@@ -33,7 +33,12 @@ I used `GestureDetector` to prevent opening `Keyboard` while tapping on `TextFie
 **main.dart**
 
 ```sh
+
+import 'package:persian_datepicker/persian_datepicker.dart';
+
 ...
+
+
 Column(
   mainAxisSize: MainAxisSize.min,
   children: <Widget>[
