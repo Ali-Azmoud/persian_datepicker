@@ -1,5 +1,6 @@
 # Persian Datepicker
-A persian ( farsi ) datepicker for flutter
+A persian ( farsi ) datepicker for flutter.
+This package is using [jalaali package](https://pub.dartlang.org/packages/jalaali) as it's dependency
 
 ### Installation
 
