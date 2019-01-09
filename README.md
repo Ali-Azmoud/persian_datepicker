@@ -8,7 +8,7 @@ Depend on it
 
 ```sh
 dependencies:
-  persian_datepicker: ^0.1
+  persian_datepicker: ^0.2.0
 ```
 Install it
 
