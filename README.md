@@ -21,5 +21,51 @@ Import it
 import 'package:persian_datepicker/persian_datepicker.dart';
 ```
 
+### Usage
 
 
+A simple example which has a column and two text fields inside it
+first `TextField` is simple datepicker
+second `TextField` is range datepicker
+
+I used `GestureDetector` to prevent opening `Keyboard` while tapping on `TextField`s
+
+**main.dart**
+
+```sh
+...
+Column(
+  mainAxisSize: MainAxisSize.min,
+  children: <Widget>[
+    GestureDetector(
+      onTap: () {},
+      child: Container(
+        child: TextField(
+          onTap: () { FocusScope.of(context).requestFocus(new FocusNode());
+          showModalBottomSheet(context: context, builder: (BuildContext context) {
+            return PersianDatePicker(controller: textEditingController,);
+          });
+          },
+          controller: textEditingController,
+        ),
+      ),
+    ),
+    GestureDetector(
+      onTap: () {},
+      child: Container(
+        child: TextField(
+          onTap: () { FocusScope.of(context).requestFocus(new FocusNode());
+          showModalBottomSheet(context: context, builder: (BuildContext context) {
+            return PersianDatePicker(controller: rangeTextEditingController, rangeSelector: true,);
+          });
+          },
+          controller: rangeTextEditingController,
+        ),
+      ),
+    )
+  ],
+)
+...
+```
+
+You can find the full example in the example folder
