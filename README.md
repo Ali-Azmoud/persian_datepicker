@@ -74,4 +74,4 @@ Column(
 ...
 ```
 
-You can find the full example in the example folder
+You can find the full example in the lib folder
