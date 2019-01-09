@@ -74,4 +74,15 @@ Column(
 ...
 ```
 
+### HOW IT LOOKS
+
+Simple Datepicker
+
+![](simple.gif)
+
+
+Range Datepicker
+
+![](range.gif)
+
 You can find the full example in the lib folder
