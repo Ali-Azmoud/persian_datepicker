@@ -380,8 +380,8 @@ TextStyle monthSelectionTextStyle
 
 <hr>
 
-The background color of selected year in year selection dialog box  
-رنگ پس زمینه سال انتخاب شده در دیالوگ انتخاب سال
+The background color of selected month in month selection dialog box  
+رنگ پس زمینه ماه انتخاب شده در دیالوگ انتخاب ماه
 
 ```
 Color monthSelectionHighlightBackgroundColor
