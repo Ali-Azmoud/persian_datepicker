@@ -188,4 +188,279 @@ persianDatePicker = PersianDatePicker(
 ![](customized.PNG)
 
 
+<br>
+<br>
+<br>
+
+
+
+### Options
+
+The controller of the input which you want to connect it to datepicker. This parameter is **required**  
+کنترلر تکست فیلدی که میخواهید به دیت پیکر تبدیل کنید
+```
+TextEditingController controller @required
+```
+<br>
+
+Persian input datetime   
+ورودی دیت پیکر به فرمت تاریخ پارسی 
+```
+String datetime
+```
+
+<br>
+
+Persian input finish datetime, if this option is set, then datepicker changes to range datepicker  
+ورودی دیت پیکر برای تاریخ پایان به فرمت پارسی، اگر این ورودی ست شود، دیت پیکر به صورت محدوده ای خواهد بود
+```
+String finishDatetime
+```
+
+<br>
+
+Gregorian input datetime  
+ورودی دیت پیکر به فرمت تاریخ میلادی
+```
+String gregorianDatetime
+```
+
+<br>
+
+Gregorian finish datetime, if this option is set, then datepicker changes to range datepicker  
+ورودی دیت پیکر برای تاریخ پایان به فرمت گرگورین، اگر این ورودی ست شود، دیت پیکر به صورت محدوده ای خواهد بود
+```
+String gregorianFinishDatetime
+```
+
+<br>
+
+Output format of the datepicker ( display format )
+فرمت خروجی نمایش تاریخ  
+
+* YYYY  ( four digits year سال به صورت چهار رقمی )
+* YY    ( two digits year سال به صورت دو رقمی )
+* MM    ( 0 lead month ماه با صفر در ابتدای عددهای کمتر از 10 )
+* M     ( month number ماه بدون صفر در ابتدای عددهای کمتر از 10 )
+* DD    ( 0 lead day number روز با صفر در ابتدای اعداد کمتر از 10 )
+* D    ( day number روز بدون صفر در ابتدای اعداد کمتر از 10 )
+```
+String outputFormat
+```
+
+<br>
+
+
+Range output or input is two dates beside to each other with a separator between them which is `rangeSeparator`, default value is ` # `  
+فرمت ورودی یا خروجی محدوده به صورت دو تاریخ کنار هم با یک جدا کننده است. این ورودی همان جدا کننده است که مقدار پیش فرض آن `#` میباشد
+```
+String rangeSeparator
+```
+
+<br>
+
+```
+double datePickerHeight
+```
+
+<br>
+
+```
+int yearSelectionAnimationDuration
+```
+
+<br>
+
+```
+Curve yearSelectionAnimationCurve
+```
+
+<br>
+
+```
+int monthSelectionAnimationDuration
+```
+
+<br>
+
+```
+Curve monthSelectionAnimationCurve
+```
+
+<br>
+
+```
+Color yearSelectionBackgroundColor
+```
+
+<br>
+
+```
+Color yearSelectionFontColor
+```
+
+<br>
+
+```
+Color yearSelectionHighlightBackgroundColor
+```
+
+<br>
+
+```
+Color yearSelectionHighlightFontColor
+```
+
+<br>
+
+```
+Color monthSelectionBackgroundColor
+```
+
+<br>
+
+```
+Color monthSelectionFontColor
+```
+
+<br>
+
+```
+Color monthSelectionHighlightBackgroundColor
+```
+
+<br>
+
+```
+Color monthSelectionHighlightFontColor
+```
+
+<br>
+
+```
+Color weekCaptionsBackgroundColor
+```
+
+<br>
+
+```
+Color weekCaptionsFontColor
+```
+
+<br>
+
+```
+Color headerBackgroundColor
+```
+
+<br>
+
+```
+TextStyle headerTextStyle
+```
+
+<br>
+
+```
+Color daysBackgroundColor
+```
+
+<br>
+
+```
+Color daysFontColor
+```
+
+<br>
+
+```
+Color currentDayBackgroundColor
+```
+
+<br>
+
+```
+Color currentDayFontColor
+```
+
+<br>
+
+```
+Color selectedDayBackgroundColor
+```
+
+<br>
+
+```
+Color selectedDayFontColor
+```
+
+<br>
+
+```
+Color headerTodayBackgroundColor
+```
+
+<br>
+
+```
+Color disabledDayBackgroundColor
+```
+
+<br>
+
+```
+Color disabledDayFontColor
+```
+
+<br>
+
+```
+Text headerTodayText
+```
+
+<br>
+
+```
+Icon headerTodayIcon
+```
+
+<br>
+
+```
+Color daysBorderColor
+```
+
+<br>
+
+```
+Color selectedDayBorderColor
+```
+
+<br>
+
+```
+Color selectedDaysInnerBorderColor
+```
+
+<br>
+
+```
+Color todayBorderColor
+```
+
+<br>
+
+```
+double daysBorderWidth
+```
+
+<br>
+<br>
+
+
+### Important Notes نکات مهم
+`rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null
+
+
 You can find the full example in the lib folder
