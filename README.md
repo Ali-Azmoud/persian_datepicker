@@ -175,8 +175,8 @@ You can customize datepicker as you wish, there are a lot of options to set, bel
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
     outputFormat: 'YYYY/MM/DD',
-    datetime: '1397/08/13',
-    finishDatetime: '1397/08/17',
+    datetime: '1397/08/29',
+    finishDatetime: '1397/08/30',
     daysBorderWidth: 3,
     weekCaptionsBackgroundColor: Colors.red,
     headerBackgroundColor: Colors.blue.withOpacity(0.5),
