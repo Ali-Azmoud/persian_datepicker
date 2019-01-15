@@ -200,7 +200,7 @@ The controller of the input which you want to connect it to datepicker. This par
 ```
 TextEditingController controller @required
 ```
-<br>
+<hr>
 
 Persian input datetime   
 ورودی دیت پیکر به فرمت تاریخ پارسی 
@@ -208,7 +208,7 @@ Persian input datetime
 String datetime
 ```
 
-<br>
+<hr>
 
 Persian input finish datetime, if this option is set, then datepicker changes to range datepicker  
 ورودی دیت پیکر برای تاریخ پایان به فرمت پارسی، اگر این ورودی ست شود، دیت پیکر به صورت محدوده ای خواهد بود
@@ -216,7 +216,7 @@ Persian input finish datetime, if this option is set, then datepicker changes to
 String finishDatetime
 ```
 
-<br>
+<hr>
 
 Gregorian input datetime  
 ورودی دیت پیکر به فرمت تاریخ میلادی
@@ -224,7 +224,7 @@ Gregorian input datetime
 String gregorianDatetime
 ```
 
-<br>
+<hr>
 
 Gregorian finish datetime, if this option is set, then datepicker changes to range datepicker  
 ورودی دیت پیکر برای تاریخ پایان به فرمت گرگورین، اگر این ورودی ست شود، دیت پیکر به صورت محدوده ای خواهد بود
@@ -232,7 +232,7 @@ Gregorian finish datetime, if this option is set, then datepicker changes to ran
 String gregorianFinishDatetime
 ```
 
-<br>
+<hr>
 
 Output format of the datepicker ( display format )
 فرمت خروجی نمایش تاریخ  
@@ -247,7 +247,7 @@ Output format of the datepicker ( display format )
 String outputFormat
 ```
 
-<br>
+<hr>
 
 
 Range output or input is two dates beside to each other with a separator between them which is `rangeSeparator`, default value is ` # `  
@@ -256,199 +256,199 @@ Range output or input is two dates beside to each other with a separator between
 String rangeSeparator
 ```
 
-<br>
+<hr>
 
 ```
 double datePickerHeight
 ```
 
-<br>
+<hr>
 
 ```
 int yearSelectionAnimationDuration
 ```
 
-<br>
+<hr>
 
 ```
 Curve yearSelectionAnimationCurve
 ```
 
-<br>
+<hr>
 
 ```
 int monthSelectionAnimationDuration
 ```
 
-<br>
+<hr>
 
 ```
 Curve monthSelectionAnimationCurve
 ```
 
-<br>
+<hr>
 
 ```
 Color yearSelectionBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color yearSelectionFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color yearSelectionHighlightBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color yearSelectionHighlightFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color monthSelectionBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color monthSelectionFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color monthSelectionHighlightBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color monthSelectionHighlightFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color weekCaptionsBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color weekCaptionsFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color headerBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 TextStyle headerTextStyle
 ```
 
-<br>
+<hr>
 
 ```
 Color daysBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color daysFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color currentDayBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color currentDayFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color selectedDayBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color selectedDayFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Color headerTodayBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color disabledDayBackgroundColor
 ```
 
-<br>
+<hr>
 
 ```
 Color disabledDayFontColor
 ```
 
-<br>
+<hr>
 
 ```
 Text headerTodayText
 ```
 
-<br>
+<hr>
 
 ```
 Icon headerTodayIcon
 ```
 
-<br>
+<hr>
 
 ```
 Color daysBorderColor
 ```
 
-<br>
+<hr>
 
 ```
 Color selectedDayBorderColor
 ```
 
-<br>
+<hr>
 
 ```
 Color selectedDaysInnerBorderColor
 ```
 
-<br>
+<hr>
 
 ```
 Color todayBorderColor
 ```
 
-<br>
+<hr>
 
 ```
 double daysBorderWidth
@@ -462,4 +462,4 @@ double daysBorderWidth
 `rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null
 
 
-You can find the full example in the lib folder
+You can find the full example in the example directory
