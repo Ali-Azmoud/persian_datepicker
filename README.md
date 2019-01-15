@@ -205,7 +205,7 @@ TextEditingController controller @required
 Persian input datetime   
 ورودی دیت پیکر به فرمت تاریخ پارسی 
 ```
-String datetime
+String datetime     Default: today date
 ```
 
 <hr>
@@ -244,7 +244,7 @@ Output format of the datepicker ( display format )
 * DD    ( 0 lead day number روز با صفر در ابتدای اعداد کمتر از 10 )
 * D    ( day number روز بدون صفر در ابتدای اعداد کمتر از 10 )
 ```
-String outputFormat
+String outputFormat     Default: YYYY/MM/DD
 ```
 
 <hr>
@@ -253,34 +253,45 @@ String outputFormat
 Range output or input is two dates beside to each other with a separator between them which is `rangeSeparator`, default value is ` # `  
 فرمت ورودی یا خروجی محدوده به صورت دو تاریخ کنار هم با یک جدا کننده است. این ورودی همان جدا کننده است که مقدار پیش فرض آن `#` میباشد
 ```
-String rangeSeparator
+String rangeSeparator     Default: #
 ```
 
 <hr>
 
+The height of your datepicker  
+ارتفاع دیت پیکر
 ```
-double datePickerHeight
-```
-
-<hr>
-
-```
-int yearSelectionAnimationDuration
+double datePickerHeight     Default: 320
 ```
 
 <hr>
 
+When you tap on the year caption, a tiny dialog appears with an animation, this option handles the `Duration` of appearing the dialog  
+زمانیکه روی عنوان سال کلیک میکنید، دیالوگ کوچکی ظاهر میشود، این ورودی مدت زمان ظاهر شدن دیالوگ را مشخص میکند
 ```
-Curve yearSelectionAnimationCurve
+Duration yearSelectionAnimationDuration      Default: 400 milliseconds
+```
+
+<hr>
+
+The year dialog box `Curve` type  
+نوع انیمیشن دیالوگ انتخاب سال
+```
+Curve yearSelectionAnimationCurve     Default: elasticOut
 ```
 
 <hr>
 
+When you tap on the month caption, a tiny dialog appears with an animation, this option handles the `Duration` of appearing the dialog  
+زمانیکه روی عنوان ماه کلیک میکنید، دیالوگ کوچکی ظاهر میشود، این ورودی مدت زمان ظاهر شدن دیالوگ را مشخص میکند
 ```
-int monthSelectionAnimationDuration
+Duration monthSelectionAnimationDuration     Default: 400 milliseconds
 ```
 
 <hr>
+
+The month dialog box `Curve` type  
+نوع انیمیشن دیالوگ انتخاب ماه
 
 ```
 Curve monthSelectionAnimationCurve
@@ -288,6 +299,8 @@ Curve monthSelectionAnimationCurve
 
 <hr>
 
+The background color of selected  year in year-selection-dialog  
+**رنگ پس زمینه سال انتخاب شده در **دیالوگ انتخاب سال
 ```
 Color yearSelectionBackgroundColor
 ```
