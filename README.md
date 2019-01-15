@@ -123,7 +123,7 @@ if `datetime` is provided then the `gregorianDatetime` will be ignored. you can'
 نمیتوان دو ورودی و تاریخ را به عنوان تاریخ شروع به دیت پیکر داد
 
 ```
-/*Range DatePicker*/
+/*DatePicker with gregorian date as input*/
 persianDatePicker = PersianDatePicker(
   controller: textEditingController,
   gregorianDatetime: '2019-01-15',
