@@ -113,7 +113,7 @@ class HomeState extends State<Home> {
 <br>
 <br>
 
-**Datepicker with gregorian input  دیت پیکر با ورودی تاریخ میلادی**  
+**Datepicker with GREGORIAN input  دیت پیکر با ورودی تاریخ میلادی**  
 Datepicker will convert gregorian date to persian date first then set the `TextField` , then shows the widget ( if inline )  
 دیت پیتکر ابتدا تاریخ میلادی را به جلالی ( پارسی ) تغییر میدهد و سپس مقدار `TextField` را ست میکند
 
