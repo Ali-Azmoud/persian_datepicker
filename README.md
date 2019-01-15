@@ -472,7 +472,8 @@ double daysBorderWidth
 
 
 ### Important Notes نکات مهم
-`rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null
+`rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null  
+مقدار ورودی `rangeSeparator` و جداکننده ای که برای فرمت خروجی انتخاب کرده اید نباید یکی باشند در این صورت دیت پیکر خروجی `جداکننده های محدوده و خروجی مشابه هستند` برمیگرداند
 
 
 You can find the full example in the example directory
