@@ -1,4 +1,4 @@
-# This document is not completed yet
+# This document is not completed yet توضیحات هنوز کامل نشده است
 
 
 # Persian Datepicker
@@ -28,6 +28,7 @@ import 'package:persian_datepicker/persian_datepicker.dart';
 
 
 A simple example with a TextField which turns into a datepicker
+یک مثال ساده با یک TextField که به عنوان دیت پیکر استفاده میشود
 
 **main.dart**
 
@@ -103,7 +104,7 @@ class HomeState extends State<Home> {
 
 ### HOW IT LOOKS
 
-**Simple Datepicker**
+**Simple Datepicker دیت پیکر ساده**
 
 ![](simple.gif)
 
@@ -112,7 +113,31 @@ class HomeState extends State<Home> {
 <br>
 <br>
 
-**Range Datepicker**
+**Datepicker with gregorian input  دیت پیکر با ورودی تاریخ میلادی**
+Datepicker will convert gregorian date to persian date first then set the `TextField` , then shows the widget ( if inline )  
+دیت پیتکر ابتدا تاریخ میلادی را به جلالی ( پارسی ) تغییر میدهد و سپس مقدار `TextField` را ست میکند
+
+**important note نکته مهم**
+if `datetime` is provided then the `gregorianDatetime` will be ignored. you can't input two dates to a datepicker  
+اگر پارامتر `datetime` ست شده باشد آنگاه پارامتر `gregorianDatetime` نادیده گرفته میشود
+نمیتوان دو ورودی و تاریخ را به عنوان تاریخ شروع به دیت پیکر داد
+
+```
+/*Range DatePicker*/
+persianDatePicker = PersianDatePicker(
+  controller: textEditingController,
+  gregorianDatetime: '2019-01-15',
+  outputFormat: 'YYYY/MM/DD',
+).initialize();
+
+```
+
+<br>
+<br>
+<br>
+<br>
+
+**Range Datepicker دیت پیکر به صورت انتخاب محدوده**
 
 ```
 /*Range DatePicker*/
@@ -132,7 +157,7 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 
-**Inline Datepicker**
+**Inline Datepicker دیت پیکر روی صفحه**
 
 ```
 /*Inline DatePicker*/
@@ -166,9 +191,10 @@ return Column(
 <br>
 <br>
 
-**Customized Datepicker**
+**Customized Datepicker دیت پیکر شخصی سازی شده**
 
-You can customize datepicker as you wish, there are a lot of options to set, below code is just a few of them.
+You can customize datepicker as you wish, there are a lot of options to set, below example is just a few of them.
+شما میتوانید دیت پیکرتان را به هر صورتی که میخواهید شخصی سازی کنید. در مثال زیر تنها بخشی از پارامترها آورده شده است
 
 ```
 /*Customized DatePicker*/
