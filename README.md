@@ -113,11 +113,11 @@ class HomeState extends State<Home> {
 <br>
 <br>
 
-**Datepicker with gregorian input  دیت پیکر با ورودی تاریخ میلادی**
+**Datepicker with gregorian input  دیت پیکر با ورودی تاریخ میلادی**  
 Datepicker will convert gregorian date to persian date first then set the `TextField` , then shows the widget ( if inline )  
 دیت پیتکر ابتدا تاریخ میلادی را به جلالی ( پارسی ) تغییر میدهد و سپس مقدار `TextField` را ست میکند
 
-**important note نکته مهم**
+**important note نکته مهم**  
 if `datetime` is provided then the `gregorianDatetime` will be ignored. you can't input two dates to a datepicker  
 اگر پارامتر `datetime` ست شده باشد آنگاه پارامتر `gregorianDatetime` نادیده گرفته میشود
 نمیتوان دو ورودی و تاریخ را به عنوان تاریخ شروع به دیت پیکر داد
