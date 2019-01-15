@@ -110,7 +110,7 @@ class HomeState extends State<Home> {
 
 <br>
 <br>
-<br>
+<hr>
 <br>
 
 **Datepicker with GREGORIAN input  دیت پیکر با ورودی تاریخ میلادی**  
@@ -134,7 +134,7 @@ persianDatePicker = PersianDatePicker(
 
 <br>
 <br>
-<br>
+<hr>
 <br>
 
 **Range Datepicker دیت پیکر به صورت انتخاب محدوده**
@@ -154,7 +154,7 @@ persianDatePicker = PersianDatePicker(
 
 <br>
 <br>
-<br>
+<hr>
 <br>
 
 **Inline Datepicker دیت پیکر روی صفحه**
@@ -188,7 +188,7 @@ return Column(
 
 <br>
 <br>
-<br>
+<hr>
 <br>
 
 **Customized Datepicker دیت پیکر شخصی سازی شده**
@@ -217,7 +217,7 @@ persianDatePicker = PersianDatePicker(
 
 
 <br>
-<br>
+<hr>
 <br>
 
 
