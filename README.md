@@ -27,7 +27,7 @@ import 'package:persian_datepicker/persian_datepicker.dart';
 ### Usage
 
 
-A simple example with a TextField which turns into a datepicker
+A simple example with a TextField which turns into a datepicker  
 یک مثال ساده با یک TextField که به عنوان دیت پیکر استفاده میشود
 
 **main.dart**
@@ -193,7 +193,7 @@ return Column(
 
 **Customized Datepicker دیت پیکر شخصی سازی شده**
 
-You can customize datepicker as you wish, there are a lot of options to set, below example is just a few of them.
+You can customize datepicker as you wish, there are a lot of options to set, below example is just a few of them.  
 شما میتوانید دیت پیکرتان را به هر صورتی که میخواهید شخصی سازی کنید. در مثال زیر تنها بخشی از پارامترها آورده شده است
 
 ```
