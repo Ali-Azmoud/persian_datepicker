@@ -307,23 +307,34 @@ Color yearSelectionBackgroundColor
 
 <hr>
 
+
+Text style of year selection dialog box  
+استایل متن در دیالوگ انتخاب سال
 ```
-Color yearSelectionFontColor
+TextStyle yearSelectionTextStyle
 ```
 
 <hr>
 
+The background color of selected year in year selection dialog box  
+رنگ پس زمینه سال انتخاب شده در دیالوگ انتخاب سال
 ```
 Color yearSelectionHighlightBackgroundColor
 ```
 
 <hr>
 
+
+Text style of selected year in year selection dialog box  
+استایل متن سال انتخاب شده در دیالوگ انتخاب سال
 ```
-Color yearSelectionHighlightFontColor
+TextStyle yearSelectionHighlightTextStyle
 ```
 
 <hr>
+
+The background color of selected  month in year-selection-dialog  
+**رنگ پس زمینه ماه انتخاب شده در **دیالوگ انتخاب ماه
 
 ```
 Color monthSelectionBackgroundColor
@@ -331,11 +342,17 @@ Color monthSelectionBackgroundColor
 
 <hr>
 
+Text style of month selection dialog box  
+استایل متن در دیالوگ انتخاب ماه
+
 ```
-Color monthSelectionFontColor
+TextStyle monthSelectionTextStyle
 ```
 
 <hr>
+
+The background color of selected year in year selection dialog box  
+رنگ پس زمینه سال انتخاب شده در دیالوگ انتخاب سال
 
 ```
 Color monthSelectionHighlightBackgroundColor
@@ -343,36 +360,51 @@ Color monthSelectionHighlightBackgroundColor
 
 <hr>
 
+
+Text style of selected month in month selection dialog box  
+استایل متن ماه انتخاب شده در دیالوگ انتخاب ماه
+
 ```
-Color monthSelectionHighlightFontColor
+TextStyle monthSelectionHighlightTextStyle
 ```
 
 <hr>
 
+Background color of week captions  
+رنگ پس زمینه عناوین هفته
 ```
 Color weekCaptionsBackgroundColor
 ```
 
 <hr>
 
+Text style of week captions  
+استایل متن عناوین هفته
 ```
-Color weekCaptionsFontColor
+TextStyle weekCaptionsTextStyle
 ```
 
 <hr>
 
+
+Background color of header  
+رنگ پس زمینه هدر
 ```
 Color headerBackgroundColor
 ```
 
 <hr>
 
+Text style of header texts, The icons near header captions also take their effect by this option  
+استایل متن، ماه و سال هدر. آیکون های کنار ماه و سال هم از این پارامتر تاثیر میگیرند
 ```
 TextStyle headerTextStyle
 ```
 
 <hr>
 
+background color of days  
+رنگ پس زمینه روزها
 ```
 Color daysBackgroundColor
 ```
@@ -475,5 +507,8 @@ double daysBorderWidth
 `rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null  
 مقدار ورودی `rangeSeparator` و جداکننده ای که برای فرمت خروجی انتخاب کرده اید نباید یکی باشند در این صورت دیت پیکر خروجی `جداکننده های محدوده و خروجی مشابه هستند` برمیگرداند
 
+<br>
+<br>
 
+### Examples
 You can find the full example in the example directory
