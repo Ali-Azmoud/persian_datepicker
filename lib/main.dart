@@ -1,67 +1,63 @@
 import 'package:flutter/material.dart';
-import 'persian_datepicker.dart';
+import 'package:persian_datepicker/persian_datepicker.dart';
+
 
 void main() {
   runApp(Home());
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  HomeState createState() {
+    return new HomeState();
+  }
+}
 
-  final TextEditingController textEditingController = TextEditingController(text: '1397/08/15');
-  final TextEditingController rangeTextEditingController = TextEditingController();
+class HomeState extends State<Home> {
+
+  // our text controller
+  final TextEditingController textEditingController = TextEditingController();
+
+  PersianDatePickerWidget persianDatePicker;
+
+  @override
+  void initState() {
+
+
+    /*Simple DatePicker*/
+    persianDatePicker = PersianDatePicker(
+      controller: textEditingController,
+      datetime: '1397/06/09',
+      outputFormat: 'YYYY/MM/DD',
+    ).initialize();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('تقویم'),),
+        appBar: AppBar(title: Text('تقویم ساده'),),
         body: Builder(builder: (BuildContext context) {
-          return SingleChildScrollView(
-
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-
-                  },
-                  child: Container(
-                    child: TextField(
-                      onTap: () { FocusScope.of(context).requestFocus(new FocusNode());
-                      showModalBottomSheet(context: context, builder: (BuildContext context) {
-                        return PersianDatePicker(controller: textEditingController,);
-                      });
 
 
-                      },
-                      controller: textEditingController,
-                    ),
-                  ),
-                ),
-
-
-
-                GestureDetector(
-                  onTap: () {
-
-                  },
-                  child: Container(
-                    child: TextField(
-                      onTap: () { FocusScope.of(context).requestFocus(new FocusNode());
-                      showModalBottomSheet(context: context, builder: (BuildContext context) {
-                        return PersianDatePicker(controller: rangeTextEditingController, rangeSelector: true,);
-                      });
-
-
-                      },
-                      controller: rangeTextEditingController,
-                    ),
-                  ),
-                )
-
-              ],
+          return Container(
+            child: TextField(
+              onTap: () {
+                FocusScope.of(context).requestFocus(new FocusNode()); // to prevent opening default keyboard
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return persianDatePicker;
+                    });
+              },
+              controller: textEditingController,
             ),
           );
+
+
+
         }),
       ),
     );
