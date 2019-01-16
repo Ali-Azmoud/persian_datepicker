@@ -10,7 +10,7 @@ Depend on it
 
 ```sh
 dependencies:
-  persian_datepicker: ^1.0.6
+  persian_datepicker: ^1.0.11
 ```
 Install it
 
@@ -23,6 +23,9 @@ Import it
 ```sh
 import 'package:persian_datepicker/persian_datepicker.dart';
 ```
+
+# Persian DatePicker
+A persian ( farsi ) datepicker for flutter.
 
 
 ### Usage
@@ -63,8 +66,7 @@ class HomeState extends State<Home> {
     /*Simple DatePicker*/
     persianDatePicker = PersianDatePicker(
       controller: textEditingController,
-      datetime: '1397/06/09',
-      outputFormat: 'YYYY/MM/DD',
+//      datetime: '1397/06/09',
     ).initialize();
 
     super.initState();
@@ -80,6 +82,7 @@ class HomeState extends State<Home> {
 
           return Container(
             child: TextField(
+              enableInteractiveSelection: false, // *** this is important to prevent user interactive selection ***
               onTap: () {
                 FocusScope.of(context).requestFocus(new FocusNode()); // to prevent opening default keyboard
                 showModalBottomSheet(
@@ -104,7 +107,7 @@ class HomeState extends State<Home> {
 
 ### HOW IT LOOKS
 
-**Simple Datepicker**
+**Simple DatePicker**
 
 ![](simple.gif)
 
@@ -113,15 +116,15 @@ class HomeState extends State<Home> {
 <br>
 <br>
 
-**Range Datepicker**
+**Range DatePicker**
 
 ```
 /*Range DatePicker*/
 persianDatePicker = PersianDatePicker(
   controller: textEditingController,
-  datetime: '1397/06/09',
-  finishDatetime: '1397/06/15',
-  outputFormat: 'YYYY/MM/DD',
+  rangeDatePicker: true,
+  // datetime: '1397/06/09',
+  // finishDatetime: '1397/06/15',
 ).initialize();
 
 ```
@@ -133,14 +136,13 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 
-**Inline Datepicker**
+**Inline DatePicker**
 
 ```
 /*Inline DatePicker*/
 persianDatePicker = PersianDatePicker(
   controller: textEditingController,
   datetime: '1397/06/19',
-  outputFormat: 'YYYY/MM/DD',
 ).initialize();
 
 
@@ -154,6 +156,7 @@ return Column(
       child: persianDatePicker, // just pass `persianDatePicker` variable as child with no ( )
     ),
     TextField(
+      enabled: false,
       controller: textEditingController,
     ),
   ],
@@ -167,7 +170,7 @@ return Column(
 <br>
 <br>
 
-**Customized Datepicker**
+**Customized DatePicker**
 
 You can customize datepicker as you wish, there are a lot of options to set, below code is just a few of them.
 
