@@ -10,7 +10,7 @@ Depend on it
 
 ```sh
 dependencies:
-  persian_datepicker: ^1.0.4
+  persian_datepicker: ^1.0.6
 ```
 Install it
 
@@ -24,11 +24,11 @@ Import it
 import 'package:persian_datepicker/persian_datepicker.dart';
 ```
 
+
 ### Usage
 
 
-A simple example with a TextField which turns into a datepicker  
-یک مثال ساده با یک TextField که به عنوان دیت پیکر استفاده میشود
+A simple example with a TextField which turns into a datepicker
 
 **main.dart**
 
@@ -104,40 +104,16 @@ class HomeState extends State<Home> {
 
 ### HOW IT LOOKS
 
-**Simple Datepicker دیت پیکر ساده**
+**Simple Datepicker**
 
 ![](simple.gif)
 
 <br>
 <br>
-<hr>
-<br>
-
-**Datepicker with GREGORIAN input  دیت پیکر با ورودی تاریخ میلادی**  
-Datepicker will convert gregorian date to persian date first then set the `TextField` , then shows the widget ( if inline )  
-دیت پیتکر ابتدا تاریخ میلادی را به جلالی ( پارسی ) تغییر میدهد و سپس مقدار `TextField` را ست میکند
-
-**important note نکته مهم**  
-if `datetime` is provided then the `gregorianDatetime` will be ignored. you can't input two dates to a datepicker  
-اگر پارامتر `datetime` ست شده باشد آنگاه پارامتر `gregorianDatetime` نادیده گرفته میشود
-نمیتوان دو ورودی و تاریخ را به عنوان تاریخ شروع به دیت پیکر داد
-
-```
-/*DatePicker with gregorian date as input*/
-persianDatePicker = PersianDatePicker(
-  controller: textEditingController,
-  gregorianDatetime: '2019-01-15',
-  outputFormat: 'YYYY/MM/DD',
-).initialize();
-
-```
-
 <br>
 <br>
-<hr>
-<br>
 
-**Range Datepicker دیت پیکر به صورت انتخاب محدوده**
+**Range Datepicker**
 
 ```
 /*Range DatePicker*/
@@ -154,10 +130,10 @@ persianDatePicker = PersianDatePicker(
 
 <br>
 <br>
-<hr>
+<br>
 <br>
 
-**Inline Datepicker دیت پیکر روی صفحه**
+**Inline Datepicker**
 
 ```
 /*Inline DatePicker*/
@@ -188,21 +164,20 @@ return Column(
 
 <br>
 <br>
-<hr>
+<br>
 <br>
 
-**Customized Datepicker دیت پیکر شخصی سازی شده**
+**Customized Datepicker**
 
-You can customize datepicker as you wish, there are a lot of options to set, below example is just a few of them.  
-شما میتوانید دیت پیکرتان را به هر صورتی که میخواهید شخصی سازی کنید. در مثال زیر تنها بخشی از پارامترها آورده شده است
+You can customize datepicker as you wish, there are a lot of options to set, below code is just a few of them.
 
 ```
 /*Customized DatePicker*/
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
     outputFormat: 'YYYY/MM/DD',
-    datetime: '1397/08/29',
-    finishDatetime: '1397/08/30',
+    datetime: '1397/08/13',
+    finishDatetime: '1397/08/17',
     daysBorderWidth: 3,
     weekCaptionsBackgroundColor: Colors.red,
     headerBackgroundColor: Colors.blue.withOpacity(0.5),
@@ -217,7 +192,7 @@ persianDatePicker = PersianDatePicker(
 
 
 <br>
-<hr>
+<br>
 <br>
 
 
@@ -380,8 +355,8 @@ TextStyle monthSelectionTextStyle
 
 <hr>
 
-The background color of selected month in month selection dialog box  
-رنگ پس زمینه ماه انتخاب شده در دیالوگ انتخاب ماه
+The background color of selected year in year selection dialog box  
+رنگ پس زمینه سال انتخاب شده در دیالوگ انتخاب سال
 
 ```
 Color monthSelectionHighlightBackgroundColor
@@ -533,11 +508,26 @@ double daysBorderWidth
 
 
 ### Important Notes نکات مهم
+
+up to this version all output dates are in persian.
+تا این نسخه تمام تاریخ های خروجی پارسی(جلالی) هستند
+
+
 `rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null  
 مقدار ورودی `rangeSeparator` و جداکننده ای که برای فرمت خروجی انتخاب کرده اید نباید یکی باشند در این صورت دیت پیکر خروجی `جداکننده های محدوده و خروجی مشابه هستند` برمیگرداند
 
 <br>
+
+Persian **input** dates must respect `YYYY/MM/DD` format. output format is up to you
+Gregorian **input** dates must respect `YYYY-MM-DD` format. output format is persian and up to you
+فرمت تاریخ های ورودی که پارسی (جلالی) هستند **باید** بصورت 
+`YYYY/MM/DD`
+باشد. فرمت خروجی به دلخواه شماست
+فرمت تاریخ های ورودی که میلادی هستند **باید** بصورت
+`YYYY-MM-DD`
+باشد. فرمت تاریخ خروجی، پارسی و به دلخواه شما خواهد بود
+
 <br>
 
 ### Examples
-You can find the full example in the example directory
+You can find the full example in the Git Repository, example directory
