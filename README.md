@@ -10,7 +10,7 @@ Depend on it
 
 ```sh
 dependencies:
-  persian_datepicker: ^1.0.11
+  persian_datepicker: ^1.1.0
 ```
 Install it
 
@@ -198,6 +198,31 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 
+```
+/*Customized Font Family ( Farsi Digits )*/
+persianDatePicker = PersianDatePicker(
+    controller: textEditingController,
+    farsiDigits: true
+).initialize();
+```
+
+Or if you have a font which supports farsi digits then you can simply pass the font name and everything would be ok
+اگر فونتی در برنامه استفاده کرده اید که قابلیت نمایش اعداد فارسی را دارد تنها لازم است اسم فونت را به دیت پیکر بدهید
+
+```
+/*Customized Font Family ( Farsi Digits )*/
+persianDatePicker = PersianDatePicker(
+    controller: textEditingController,
+    fontFamily: 'Vazir' // here I used Vazir font
+).initialize();
+```
+
+![](font-family-vazir.PNG)
+
+
+<br>
+<br>
+<br>
 
 
 ### Options
