@@ -70,7 +70,7 @@ class HomeState extends State<Home> {
     persianDatePicker = PersianDatePicker(
       controller: textEditingController,
 //      datetime: '1397/06/09',
-    ).initialize();
+    ).init();
 
     super.initState();
   }
@@ -128,7 +128,7 @@ persianDatePicker = PersianDatePicker(
   rangeDatePicker: true,
   // datetime: '1397/06/09',
   // finishDatetime: '1397/06/15',
-).initialize();
+).init();
 
 ```
 
@@ -146,7 +146,7 @@ persianDatePicker = PersianDatePicker(
 persianDatePicker = PersianDatePicker(
   controller: textEditingController,
   datetime: '1397/06/19',
-).initialize();
+).init();
 
 
 ....
@@ -190,7 +190,7 @@ persianDatePicker = PersianDatePicker(
     headerTextStyle: TextStyle(color: Colors.blue, fontSize: 17),
     headerTodayIcon: Icon(Icons.access_alarm, size: 15,),
     datePickerHeight: 280
-).initialize();
+).init();
 ```
 
 ![](customized.PNG)
@@ -205,7 +205,7 @@ persianDatePicker = PersianDatePicker(
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
     farsiDigits: true
-).initialize();
+).init();
 ```
 
 Or if you have a font which supports farsi digits then you can simply pass the font name and everything would be ok
@@ -216,7 +216,7 @@ Or if you have a font which supports farsi digits then you can simply pass the f
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
     fontFamily: 'Vazir' // here I used Vazir font
-).initialize();
+).init();
 ```
 
 ![](font-family-vazir.PNG)
