@@ -8,7 +8,7 @@ Depend on it
 
 ```sh
 dependencies:
-  persian_datepicker: ^1.1.3
+  persian_datepicker: ^1.1.6
 ```
 Install it
 
@@ -27,6 +27,11 @@ A persian ( farsi ) datepicker for flutter.
 
 
 ### Usage
+
+**version 1.1.6 , will break functionality of older versions. It's highly recommended to update**  
+
+**`initialize` method renamed to `init` in version 1.1.6, make sure to rename it when calling the datepicker**
+
 
 
 A simple example with a TextField which turns into a datepicker
