@@ -242,7 +242,7 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 
-##Date Conversion
+### Date Conversion
 
 You can convert farsi to english ( jalali to gregorian ) and vice versa using following methods
 
@@ -299,7 +299,7 @@ print(GDI);
 <br>
 <br>
 
-##conversion output formats
+### conversion output formats
 
 `YYYY` full year  
 `YY` 2 digits year  
