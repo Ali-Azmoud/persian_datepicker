@@ -306,7 +306,7 @@ print(GDI);
 `MMMM` full month name  ( **doesn't work in datepicker** )  
 `MMM` short month name ( this only works in gregorian dates and also **doesn't work in datepicker** )  
 `MM` leading zero month digit  
-`M` month without leading zero
+`M` month without leading zero  
 `DD` leading zero day digit  
 `D` day without leading zero 
 
