@@ -24,7 +24,7 @@ import 'package:persian_datepicker/persian_datepicker.dart';
 A persian ( farsi ) datepicker for flutter.  
 **two mostly used functions: jalali-to-gregorian and gregorian-to-jalali are added to package** to avoid adding other packages to just do the date conversion.  
 
-to see an example, refer to `Date Conversion` section in this page.
+to see an example of date conversion, refer to `Date Conversion` section in this page.
 
 ### Usage
 
