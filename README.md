@@ -1,6 +1,4 @@
 
-# Persian Datepicker
-A persian ( farsi ) datepicker for flutter.
 
 ### Installation
 
@@ -8,7 +6,7 @@ Depend on it
 
 ```sh
 dependencies:
-  persian_datepicker: ^1.1.6
+  persian_datepicker: ^1.1.7
 ```
 Install it
 
@@ -22,23 +20,19 @@ Import it
 import 'package:persian_datepicker/persian_datepicker.dart';
 ```
 
-# Persian DatePicker
-A persian ( farsi ) datepicker for flutter.
+# Persian DatePicker & simple date converter
+A persian ( farsi ) datepicker for flutter.  
+**two mostly used functions: jalali-to-gregorian and gregorian-to-jalali are added to package** to avoid adding other packages to just do the date conversion.  
 
+to see an example, refer to `Date Conversion` section in this page.
 
 ### Usage
-
-**version 1.1.6 , will break functionality of older versions. It's highly recommended to update**  
-
-**`initialize` method renamed to `init` in version 1.1.6, make sure to rename it when calling the datepicker**
-
-
 
 A simple example with a TextField which turns into a datepicker
 
 **main.dart**
 
-```sh
+```dart
 
 import 'package:flutter/material.dart';
 import 'package:persian_datepicker/persian_datepicker.dart';
@@ -64,7 +58,6 @@ class HomeState extends State<Home> {
 
   @override
   void initState() {
-
 
     /*Simple DatePicker*/
     persianDatePicker = PersianDatePicker(
@@ -121,7 +114,7 @@ class HomeState extends State<Home> {
 
 **Range DatePicker**
 
-```
+```dart
 /*Range DatePicker*/
 persianDatePicker = PersianDatePicker(
   controller: textEditingController,
@@ -141,7 +134,7 @@ persianDatePicker = PersianDatePicker(
 
 **Inline DatePicker**
 
-```
+```dart
 /*Inline DatePicker*/
 persianDatePicker = PersianDatePicker(
   controller: textEditingController,
@@ -177,7 +170,7 @@ return Column(
 
 You can customize datepicker as you wish, there are a lot of options to set, below code is just a few of them.
 
-```
+```dart
 /*Customized DatePicker*/
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
@@ -200,7 +193,8 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 
-```
+
+```dart
 /*Customized Font Family ( Farsi Digits )*/
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
@@ -208,10 +202,11 @@ persianDatePicker = PersianDatePicker(
 ).init();
 ```
 
-Or if you have a font which supports farsi digits then you can simply pass the font name and everything would be ok
+Or if you have a font which supports farsi digits then you can simply pass the font name and everything would be ok  
+
 اگر فونتی در برنامه استفاده کرده اید که قابلیت نمایش اعداد فارسی را دارد تنها لازم است اسم فونت را به دیت پیکر بدهید
 
-```
+```dart
 /*Customized Font Family ( Farsi Digits )*/
 persianDatePicker = PersianDatePicker(
     controller: textEditingController,
@@ -227,29 +222,122 @@ persianDatePicker = PersianDatePicker(
 <br>
 
 
-### Options
+### Events
 
-To see the all options and their default value, [please visit the api page](https://pub.dartlang.org/documentation/persian_datepicker/latest/persian_datepicker/PersianDatePicker/PersianDatePicker.html)
+`onChange`: fires after tapping on a day. It has two arguments, `oldText` and `newText` which represents the value of datepicker before-tap and after-tap respectively.
+
+```dart
+persianDatePicker = PersianDatePicker(
+  controller: textEditingController,
+  onChange: (String oldText, String newText) {
+    print(oldText);
+    print(newText);
+  }
+).init();
+```
+
+
+<br>
+<br>
+<br>
+<br>
+
+##Date Conversion
+
+You can convert farsi to english ( jalali to gregorian ) and vice versa using following methods
+
+```dart
+/*Range DatePicker*/
+
+PersianDateTime.gregorianToJalaali(
+      datetime: '2019-02-05',
+      outputFormat: 'YYYY/MM/DD');
+// output => 1397/11/16
+```
+
+if you want to get an object back, then just set `returnObject` to `true`
+
+```dart
+GenericDateInfo JDI = PersianDateTime.gregorianToJalaali(
+    datetime: '2019-02-05',
+    returnObject: true);
+print(JDI);
+
+/* Output
+{
+    year: 1397
+    shortYear: 97
+    month: 11
+    zeroLeadingMonth: 11
+    day: 16
+    zeroLeadingDay: 16
+    monthName: بهمن
+    shortMonthName: null
+}
+*/
+
+GenericDateInfo GDI = PersianDateTime.jalaaliToGregorian(
+    datetime: '1397/11/16',
+    returnObject: true);
+print(GDI);
+/* Output
+{
+    year: 2019
+    shortYear: 19
+    month: 2
+    zeroLeadingMonth: 02
+    day: 5
+    zeroLeadingDay: 05
+    monthName: February
+    shortMonthName: Feb
+}
+*/
+```
+
+<br>
+<br>
+<br>
+<br>
+
+##conversion output formats
+
+`YYYY` full year  
+`YY` 2 digits year  
+`MMMM` full month name  ( **doesn't work in datepicker** )
+`MMM` short month name ( this only works in gregorian dates and also **doesn't work in datepicker** )
+`MM` leading zero month digit  
+`M` month without leading zero
+`DD` leading zero day digit  
+`D` day without leading zero 
+
+
+<br>
+<br>
+<br>
+<br>
+
 
 
 ### Important Notes نکات مهم
 
-up to this version all output dates are in persian.
+up to this version all output dates are in persian.  
+
 تا این نسخه تمام تاریخ های خروجی پارسی(جلالی) هستند
 
 
 `rangeSeparator` and your custom date separator should not be equal, otherwise datepicker will return null  
-مقدار ورودی 
-`rangeSeparator`
-و جداکننده ای که برای فرمت خروجی انتخاب کرده اید نباید یکی باشند در این صورت دیت پیکر خروجی `جداکننده های محدوده و خروجی مشابه هستند` برمیگرداند
+
+مقدار ورودی `rangeSeparator` و جداکننده ای که برای فرمت خروجی انتخاب کرده اید نباید یکی باشند در این صورت دیت پیکر خروجی `جداکننده های محدوده و خروجی مشابه هستند` برمیگرداند
 
 <br>
 
-Persian **input** dates must respect `YYYY/MM/DD` format. output format is up to you
-Gregorian **input** dates must respect `YYYY-MM-DD` format. output format is persian and up to you
+Persian **input** dates must respect `YYYY/MM/DD` format. output format is up to you  
+Gregorian **input** dates must respect `YYYY-MM-DD` format. output format is persian and up to you    
+
 فرمت تاریخ های ورودی که پارسی (جلالی) هستند **باید** بصورت 
 `YYYY/MM/DD`
-باشد. فرمت خروجی به دلخواه شماست
+باشد. فرمت خروجی به دلخواه شماست  
+
 فرمت تاریخ های ورودی که میلادی هستند **باید** بصورت
 `YYYY-MM-DD`
 باشد. فرمت تاریخ خروجی، پارسی و به دلخواه شما خواهد بود
