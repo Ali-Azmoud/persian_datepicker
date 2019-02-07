@@ -1,30 +1,7 @@
-
-
-### Installation
-
-Depend on it
-
-```sh
-dependencies:
-  persian_datepicker: ^1.1.7
-```
-Install it
-
-```sh
-flutter packages get
-```
-
-Import it
-
-```sh
-import 'package:persian_datepicker/persian_datepicker.dart';
-```
-
-# Persian DatePicker & simple date converter
+# Persian DatePicker & DateTime Manipulation
 A persian ( farsi ) datepicker for flutter.  
-**two mostly used functions: jalali-to-gregorian and gregorian-to-jalali are added to package** to avoid adding other packages to just do the date conversion.  
 
-to see an example of date conversion, refer to `Date Conversion` section in this page.
+to see an example of date conversion and manipulation, refer to `DateTime` section in this page.
 
 ### Usage
 
@@ -151,8 +128,10 @@ return Column(
     Container(
       child: persianDatePicker, // just pass `persianDatePicker` variable as child with no ( )
     ),
+    
+    // you can omit TextField when using datepicker as inline
     TextField(
-      enabled: false,
+      enableInteractiveSelection: false,
       controller: textEditingController,
     ),
   ],
@@ -242,63 +221,52 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 
-### Date Conversion
+### DateTime
 
-You can convert farsi to english ( jalali to gregorian ) and vice versa using following methods
-
-```dart
-
-PersianDateTime.gregorianToJalaali(
-      datetime: '2019-02-05',
-      outputFormat: 'YYYY/MM/DD');
-// output => 1397/11/16
-```
-
-if you want to get an object back, then just set `returnObject` to `true`
+in order to use `PersianDateTime` methods, you need to add following line into your .dart file
 
 ```dart
-GenericDateInfo JDI = PersianDateTime.gregorianToJalaali(
-    datetime: '2019-02-05',
-    returnObject: true);
-print(JDI);
-
-/* Output
-{
-    year: 1397
-    shortYear: 97
-    month: 11
-    zeroLeadingMonth: 11
-    day: 16
-    zeroLeadingDay: 16
-    monthName: بهمن
-    shortMonthName: null
-}
-*/
-
-GenericDateInfo GDI = PersianDateTime.jalaaliToGregorian(
-    datetime: '1397/11/16',
-    returnObject: true);
-print(GDI);
-/* Output
-{
-    year: 2019
-    shortYear: 19
-    month: 2
-    zeroLeadingMonth: 02
-    day: 5
-    zeroLeadingDay: 05
-    monthName: February
-    shortMonthName: Feb
-}
-*/
+import 'package:persian_datepicker/persian_datetime.dart';
 ```
 
+You can now use following methods with `PersianDateTime` instances  
+**implemented methods:**  
+
+* toJalaali( format ) // see output formats  
+* toGregorian( format ) // see output formats    
+* isAfter  
+* isBefore  
+* difference  
+* isEqual  
+* add  
+* subtract
+
+
+```dart
+PersianDateTime persianDate1 = PersianDateTime(); // default is now
+print(persianDate1.datetime); // 2019-02-07 00:00:00.000
+print(persianDate1); // 1397/11/18
+
+PersianDateTime persianDate2 = PersianDateTime(jalaaliDateTime: '1397/08/09');
+print(persianDate2.toGregorian(format: 'YYYY - MMM - DD')); // 2018 - Oct - 31
+
+PersianDateTime persianDate3 = PersianDateTime.fromGregorian(); // default is now
+print(persianDate3.toJalaali(format: 'YYYY/MM/DD')); // 1397/11/18
+print(persianDate3.isEqual(persianDate1)); // true
+
+PersianDateTime persianDate4 = persianDate2.subtract(Duration(days: 10)); // subtract 10 days from persianDate2 and returns a new PersianDatePicker instance
+print(persianDate4.isBefore(persianDate2)); // true
+print(persianDate4.difference(persianDate2).inDays); // -10
+```
+
+
+
 <br>
 <br>
 <br>
 <br>
 
-### conversion output formats
+### Output formats
 
 `YYYY` full year  
 `YY` 2 digits year  
