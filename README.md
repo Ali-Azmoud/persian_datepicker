@@ -247,7 +247,6 @@ persianDatePicker = PersianDatePicker(
 You can convert farsi to english ( jalali to gregorian ) and vice versa using following methods
 
 ```dart
-/*Range DatePicker*/
 
 PersianDateTime.gregorianToJalaali(
       datetime: '2019-02-05',
