@@ -219,11 +219,12 @@ persianDatePicker = PersianDatePicker(
 <br>
 <br>
 <br>
+<hr>
 <br>
 
 ### DateTime
 
-in order to use `PersianDateTime` methods, you need to add following line into your .dart file
+in order to use `PersianDateTime` methods, you need to add following line into your file.  
 
 ```dart
 import 'package:persian_datepicker/persian_datetime.dart';
@@ -242,21 +243,52 @@ You can now use following methods with `PersianDateTime` instances
 * subtract
 
 
+All above methods work on `persian ( farsi )` dates. if you want to work with `gregorian` datetime use Dart DateTime class
+
 ```dart
-PersianDateTime persianDate1 = PersianDateTime(); // default is now
-print(persianDate1.datetime); // 2019-02-07 00:00:00.000
-print(persianDate1); // 1397/11/18
+PersianDateTime persianDate1 = PersianDateTime(jalaaliDateTime: '1397/06/09'); // default is now
+/*
+  persianDate1 contains following properties
 
-PersianDateTime persianDate2 = PersianDateTime(jalaaliDateTime: '1397/08/09');
-print(persianDate2.toGregorian(format: 'YYYY - MMM - DD')); // 2018 - Oct - 31
+  jalaaliYear               1397
+  jalaaliMonth              6
+  jalaaliDay                9
+  jalaaliShortYear          97
+  jalaaliZeroLeadingMonth   06
+  jalaaliZeroLeadingDay     09
+  jalaaliMonthName          شهریور
 
+  gregorianYear             2018
+  gregorianMonth            8
+  gregorianDay              31
+  gregorianShortYear        18
+  gregorianZeroLeadingDay   31
+  gregorianZeroLeadingMonth 08
+  gregorianMonthName        October
+  gregorianShortMonthName   Oct
+
+  datetime                  Dart DateTime class of current persian date
+
+ */
+print(persianDate1.toGregorian()); // 2018-08-31
+print(persianDate1.datetime); // 2018-08-31 00:00:00.000
+
+
+PersianDateTime persianDate2 = persianDate1.add(Duration(days: 10));
+print(persianDate2.isBefore(persianDate1)); // false
+print(persianDate2.isAfter(persianDate1)); // true
+print(persianDate2.difference(persianDate1).inDays); // 10
+print(persianDate2.difference(persianDate1).inHours); // 240
+
+PersianDateTime persianDate3 = PersianDateTime(); // default is now
+print(persianDate3.isEqual(persianDate1)); // false
+
+
+
+// you can accept date as gregorian using `.fromGregorian` constructor. it will automatically convert into jalaali date
 PersianDateTime persianDate3 = PersianDateTime.fromGregorian(); // default is now
-print(persianDate3.toJalaali(format: 'YYYY/MM/DD')); // 1397/11/18
-print(persianDate3.isEqual(persianDate1)); // true
+print(persianDate3.toJalaali(format: 'YYYY/MM/DD')); // 1397/11/19
 
-PersianDateTime persianDate4 = persianDate2.subtract(Duration(days: 10)); // subtract 10 days from persianDate2 and returns a new PersianDatePicker instance
-print(persianDate4.isBefore(persianDate2)); // true
-print(persianDate4.difference(persianDate2).inDays); // -10
 ```
 
 
