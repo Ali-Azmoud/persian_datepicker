@@ -197,6 +197,12 @@ persianDatePicker = PersianDatePicker(
 ![](font-family-vazir.PNG)
 
 
+You can make day blocks rounded by using `dayBlockRadius` option
+
+![](rounded.PNG)
+
+
+
 <br>
 <br>
 <br>
