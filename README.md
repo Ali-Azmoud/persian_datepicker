@@ -3,6 +3,7 @@ A persian ( farsi ) datepicker for flutter.
 
 to see an example of date conversion and manipulation, refer to `DateTime` section in this page.
 
+
 ### Usage
 
 A simple example with a TextField which turns into a datepicker
@@ -222,6 +223,7 @@ persianDatePicker = PersianDatePicker(
 <hr>
 <br>
 
+
 ### DateTime
 
 in order to use `PersianDateTime` methods, you need to add following line into your file.  
@@ -342,6 +344,52 @@ Gregorian **input** dates must respect `YYYY-MM-DD` format. output format is per
 باشد. فرمت تاریخ خروجی، پارسی و به دلخواه شما خواهد بود
 
 <br>
+
+### Version 1.3 features
+
+  /// حداکثر تاریخی که میتوان در دیت پیکر انتخاب کرد
+  String maxDatetime;
+
+  /// حداقل تاریخی که میتوان در دیت پیکر انتخاب کرد
+  String minDatetime;
+
+  /// حداکثر فاصله ای که تاریخ شروع و تاریخ پایان میتوانند نسبت به یکدیگر داشته باشند
+  Duration maxSpan;
+
+  /// حداقل فاصله ای که تاریخ شروع و تاریخ پایان میتوانند نسبت به یکدیگر داشته باشند
+  Duration minSpan;
+  
+  
+in order to update these options programmatically you can use `update` method, like so
+
+```dart
+...
+
+  FlatButton(
+      onPressed: () {
+        minSpan = Duration(days: 10);
+        setState(() {
+          
+          
+          // here you can update the options
+          persianDatePicker.update(
+              minSpan: minSpan,
+              minDatetime: '1397/12/19',
+              maxDatetime: '1397/12/29');
+
+
+
+        });
+      },
+      child: Container(
+        child: Text('Update Datepicker'),
+      ),
+  )
+
+...
+```
+
+
 
 ### Examples
 You can find the full example in the Git Repository, example directory
