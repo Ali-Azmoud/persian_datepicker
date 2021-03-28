@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persian_datepicker/persian_datepicker.dart';
 
-
 void main() {
   runApp(Home());
 }
@@ -14,16 +13,13 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-
   // our text controller
   final TextEditingController textEditingController = TextEditingController();
 
-  PersianDatePickerWidget persianDatePicker;
+  PersianDatePickerWidget? persianDatePicker;
 
   @override
   void initState() {
-
-
     /*Simple DatePicker*/
     persianDatePicker = PersianDatePicker(
       controller: textEditingController,
@@ -33,32 +29,31 @@ class HomeState extends State<Home> {
 
     super.initState();
   }
+
 //  git clone git@github.com:Ali-Azmoud/persian_datepicker.git .
 //  https://github.com/Ali-Azmoud/persian_datepicker.git
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('تقویم ساده'),),
+        appBar: AppBar(
+          title: Text('تقویم ساده'),
+        ),
         body: Builder(builder: (BuildContext context) {
-
-
           return Container(
             child: TextField(
               onTap: () {
-                FocusScope.of(context).requestFocus(new FocusNode()); // to prevent opening default keyboard
+                FocusScope.of(context).requestFocus(
+                    new FocusNode()); // to prevent opening default keyboard
                 showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
-                      return persianDatePicker;
+                      return persianDatePicker!;
                     });
               },
               controller: textEditingController,
             ),
           );
-
-
-
         }),
       ),
     );
