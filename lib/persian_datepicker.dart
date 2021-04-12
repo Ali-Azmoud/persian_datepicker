@@ -158,10 +158,7 @@ class PersianDatePicker {
     this.maxSpan,
     this.minSpan,
     this.dayBlockRadius,
-  })  : assert(controller != null),
-        assert(maxSpan == null ||
-            minSpan == null ||
-            (maxSpan != null && minSpan != null && maxSpan > minSpan));
+  }) : assert(maxSpan == null || minSpan == null || (maxSpan > minSpan));
 
   String _detectOutputSeparator(String outputFormat) {
     List<String> validCharacters = ['Y', 'M', 'D'];
@@ -361,14 +358,9 @@ class PersianDatePickerWidget extends StatefulWidget {
     this.options!['minSpan'] = minSpan ?? this.options!['minSpan'];
     this.options!['maxSpan'] = maxSpan ?? this.options!['maxSpan'];
 
-    if (minDatetime != null) {
-      this.options!['minDatetime'] =
-          minDatetime ?? this.options!['minDatetime'];
-    }
-    if (maxDatetime != null) {
-      this.options!['maxDatetime'] =
-          maxDatetime ?? this.options!['maxDatetime'];
-    }
+    this.options!['minDatetime'] = minDatetime ?? this.options!['minDatetime'];
+
+    this.options!['maxDatetime'] = maxDatetime ?? this.options!['maxDatetime'];
   }
 
   @override
