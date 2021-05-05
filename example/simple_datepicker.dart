@@ -18,7 +18,7 @@ class HomeState extends State<Home> {
   // our text controller
   final TextEditingController textEditingController = TextEditingController();
 
-  PersianDatePickerWidget persianDatePicker;
+  PersianDatePickerWidget? persianDatePicker;
 
   @override
   void initState() {
@@ -50,7 +50,7 @@ class HomeState extends State<Home> {
                 showModalBottomSheet(
                     context: context,
                     builder: (BuildContext context) {
-                      return persianDatePicker;
+                      return persianDatePicker!;
                     });
               },
               controller: textEditingController,

@@ -5,7 +5,7 @@ author: Ali Azmoude <ali.azmoude@gmail.com>
 homepage: https://github.com/Ali-Azmoud/persian_datepicker
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
