@@ -1,25 +1,25 @@
 import 'jalaali_js.dart';
 
 class PersianDateTime {
-  DateTime datetime;
-  Jalaali _jalaaliDateTime;
+  late DateTime datetime;
+  late Jalaali _jalaaliDateTime;
 
-  int jalaaliYear;
-  int jalaaliMonth;
-  int jalaaliDay;
-  int jalaaliShortYear;
-  String jalaaliZeroLeadingDay;
-  String jalaaliZeroLeadingMonth;
-  String jalaaliMonthName;
+  int? jalaaliYear;
+  int? jalaaliMonth;
+  int? jalaaliDay;
+  int? jalaaliShortYear;
+  String? jalaaliZeroLeadingDay;
+  String? jalaaliZeroLeadingMonth;
+  String? jalaaliMonthName;
 
-  int gregorianYear;
-  int gregorianMonth;
-  int gregorianDay;
-  int gregorianShortYear;
-  String gregorianZeroLeadingDay;
-  String gregorianZeroLeadingMonth;
-  String gregorianMonthName;
-  String gregorianShortMonthName;
+  int? gregorianYear;
+  int? gregorianMonth;
+  int? gregorianDay;
+  int? gregorianShortYear;
+  String? gregorianZeroLeadingDay;
+  String? gregorianZeroLeadingMonth;
+  String? gregorianMonthName;
+  String? gregorianShortMonthName;
 
   PersianDateTime({jalaaliDateTime}) {
     _makeStandardDateTimeFromJalaaliString(jalaaliDateTime);
@@ -86,7 +86,7 @@ class PersianDateTime {
     return translate('YYYY/MM/DD', this._jalaaliDateTime, false);
   }
 
-  void _makeJalaaliDateTimeFromJalaaliString(String jalaaliString) {
+  void _makeJalaaliDateTimeFromJalaaliString(String? jalaaliString) {
     if (jalaaliString == null) {
       _jalaaliDateTime = Jalaali.now();
     } else {
@@ -96,7 +96,7 @@ class PersianDateTime {
     }
   }
 
-  void _makeStandardDateTimeFromJalaaliString(String jalaaliString) {
+  void _makeStandardDateTimeFromJalaaliString(String? jalaaliString) {
     _makeJalaaliDateTimeFromJalaaliString(jalaaliString);
     this.datetime = _jalaaliDateTime.toGregorian().toDateTime();
 
