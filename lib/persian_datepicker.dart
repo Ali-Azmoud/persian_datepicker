@@ -343,15 +343,14 @@ class PersianDatePicker {
 class PersianDatePickerWidget extends StatefulWidget {
   final Map<String, dynamic>? options;
 
-  PersianDatePickerWidget({
-    this.options,
-  });
+  PersianDatePickerWidget({this.options});
 
-  update(
-      {Duration? minSpan,
-      Duration? maxSpan,
-      String? minDatetime,
-      String? maxDatetime}) {
+  update({
+    Duration? minSpan,
+    Duration? maxSpan,
+    String? minDatetime,
+    String? maxDatetime,
+  }) {
     if (minSpan != null && maxSpan != null && maxSpan < minSpan)
       throw 'max span must be greater than min span';
 
