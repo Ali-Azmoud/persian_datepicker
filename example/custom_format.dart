@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persian_datepicker/persian_datepicker.dart';
 
-
 void main() {
   runApp(Home());
 }
@@ -14,26 +13,22 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
-
   // our text controllers
   final TextEditingController textEditingController = TextEditingController();
-  final TextEditingController rangeTextEditingController = TextEditingController();
+  final TextEditingController rangeTextEditingController =
+      TextEditingController();
 
-  PersianDatePickerWidget persianDatePicker;
-  PersianDatePickerWidget rangePersianDatePicker;
+  PersianDatePickerWidget? persianDatePicker;
+  PersianDatePickerWidget? rangePersianDatePicker;
 
   @override
   void initState() {
-
-
     /*Custom Format DatePicker*/
     persianDatePicker = PersianDatePicker(
       controller: textEditingController,
       datetime: '1397/06/19',
       outputFormat: 'MM - YYYY - DD',
     ).init();
-
-
 
     /*Range DatePicker*/
     rangePersianDatePicker = PersianDatePicker(
@@ -43,8 +38,6 @@ class HomeState extends State<Home> {
       outputFormat: 'MM - YYYY - DD',
     ).init();
 
-
-
     super.initState();
   }
 
@@ -52,52 +45,41 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('تقویم - فرمت خروجی'),),
+        appBar: AppBar(
+          title: Text('تقویم - فرمت خروجی'),
+        ),
         body: Builder(builder: (BuildContext context) {
-
-
           return Column(
             children: <Widget>[
-
-
-
-
               // Simple Date Picker
               TextField(
                 onTap: () {
-                  FocusScope.of(context).requestFocus(new FocusNode()); // to prevent opening default keyboard
+                  FocusScope.of(context).requestFocus(
+                      new FocusNode()); // to prevent opening default keyboard
                   showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
-                        return persianDatePicker;
+                        return persianDatePicker!;
                       });
                 },
                 controller: textEditingController,
               ),
 
-
-
-
               // Range Date Picker
               TextField(
                 onTap: () {
-                  FocusScope.of(context).requestFocus(new FocusNode()); // to prevent opening default keyboard
+                  FocusScope.of(context).requestFocus(
+                      new FocusNode()); // to prevent opening default keyboard
                   showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
-                        return rangePersianDatePicker;
+                        return rangePersianDatePicker!;
                       });
                 },
                 controller: rangeTextEditingController,
               ),
-
-
-
             ],
           );
-
-
-
         }),
       ),
     );

@@ -89,3 +89,7 @@
 * min datetime feature added
 * max datetime feature added
 * day block border radius feature added
+
+## [1.4.0] - 28/03/2021.
+
+* Migrated to null-safety.
