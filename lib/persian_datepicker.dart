@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'jalaali_js.dart';
 
 enum GregorianDaysLocation { topLeft, topRight, bottomLeft, bottomRight }
@@ -6,28 +7,28 @@ enum GregorianDaysLocation { topLeft, topRight, bottomLeft, bottomRight }
 class PersianDatePicker {
   final TextEditingController controller;
 
-  final Function(String oldText, String newText) onChange;
+  final Function(String oldText, String newText)? onChange;
 
-  String datetime;
-  String finishDatetime;
-  String gregorianDatetime;
-  String gregorianFinishDatetime;
+  String? datetime;
+  String? finishDatetime;
+  String? gregorianDatetime;
+  String? gregorianFinishDatetime;
   String outputFormat;
   String rangeSeparator;
   String headerTodayCaption;
   String fontFamily;
 
   /// حداکثر تاریخی که میتوان در دیت پیکر انتخاب کرد
-  String maxDatetime;
+  String? maxDatetime;
 
   /// حداقل تاریخی که میتوان در دیت پیکر انتخاب کرد
-  String minDatetime;
+  String? minDatetime;
 
   /// حداکثر فاصله ای که تاریخ شروع و تاریخ پایان میتوانند نسبت به یکدیگر داشته باشند
-  Duration maxSpan;
+  Duration? maxSpan;
 
   /// حداقل فاصله ای که تاریخ شروع و تاریخ پایان میتوانند نسبت به یکدیگر داشته باشند
-  Duration minSpan;
+  Duration? minSpan;
 
   bool farsiDigits;
   bool rangeDatePicker;
@@ -82,10 +83,10 @@ class PersianDatePicker {
 
   GregorianDaysLocation gregorianDaysLocation;
 
-  double dayBlockRadius;
+  double? dayBlockRadius;
 
   PersianDatePicker({
-    @required this.controller,
+    required this.controller,
     this.onChange,
     this.datetime,
     this.gregorianDatetime,
@@ -131,7 +132,7 @@ class PersianDatePicker {
     this.disabledDayBackgroundColor = const Color(0xffEEEEEE),
     this.disabledDayTextStyle =
         const TextStyle(color: Color(0xffA0A0A0), fontSize: 16),
-    this.headerTodayCaption = 'امروز',
+    this.headerTodayCaption = 'اليوم',
     this.headerTodayTextStyle = const TextStyle(fontSize: 19),
     this.headerTodayIcon = const Icon(
       Icons.date_range,
@@ -144,7 +145,15 @@ class PersianDatePicker {
     this.daysBorderColor =
         const Color(0xffEDEDED), //Colors.black.withOpacity(0.02),
     this.daysBorderWidth = 0.5,
-    this.weekCaptions = const ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'],
+    this.weekCaptions = const [
+      'سبت',
+      'آحد',
+      'آثنين',
+      'ثلاثاء',
+      'آربعاء',
+      'خميس',
+      'جمعة'
+    ],
     this.changePageDuration = const Duration(milliseconds: 500),
     this.gregorianDaysTextStyle =
         const TextStyle(fontSize: 11, color: Color(0xFFC5C5C5)),
@@ -157,10 +166,7 @@ class PersianDatePicker {
     this.maxSpan,
     this.minSpan,
     this.dayBlockRadius,
-  })  : assert(controller != null),
-        assert(maxSpan == null ||
-            minSpan == null ||
-            (maxSpan != null && minSpan != null && maxSpan > minSpan));
+  }) : assert(maxSpan == null || minSpan == null || (maxSpan > minSpan));
 
   String _detectOutputSeparator(String outputFormat) {
     List<String> validCharacters = ['Y', 'M', 'D'];
@@ -177,7 +183,7 @@ class PersianDatePicker {
     return separator;
   }
 
-  PersianDatePickerWidget init() {
+  PersianDatePickerWidget? init() {
     {
       datetime = englishNumbers(datetime);
       finishDatetime = englishNumbers(finishDatetime);
@@ -197,18 +203,18 @@ class PersianDatePicker {
       String defaultInputFormat = 'YYYY/MM/DD';
 
       Jalaali jDatetime;
-      Jalaali jFinishDatetime;
+      Jalaali? jFinishDatetime;
       Gregorian gregorianDate;
-      Gregorian gregorianFinishDate;
+      Gregorian? gregorianFinishDate;
 
       if (gregorianDatetime != null &&
           gregorianDatetime.toString().isNotEmpty) {
-        List<String> gArray = gregorianDatetime.split("-");
+        List<String> gArray = gregorianDatetime!.split("-");
         gregorianDate = Gregorian(
             int.parse(gArray[0]), int.parse(gArray[1]), int.parse(gArray[2]));
 
         if (gregorianFinishDatetime != null) {
-          List<String> gfArray = gregorianFinishDatetime.split("-");
+          List<String> gfArray = gregorianFinishDatetime!.split("-");
           gregorianFinishDate = Gregorian(int.parse(gfArray[0]),
               int.parse(gfArray[1]), int.parse(gfArray[2]));
         }
@@ -343,29 +349,25 @@ class PersianDatePicker {
 }
 
 class PersianDatePickerWidget extends StatefulWidget {
-  final Map<String, dynamic> options;
+  final Map<String, dynamic>? options;
 
-  PersianDatePickerWidget({
-    this.options,
-  });
+  PersianDatePickerWidget({this.options});
 
-  update(
-      {Duration minSpan,
-      Duration maxSpan,
-      String minDatetime,
-      String maxDatetime}) {
+  update({
+    Duration? minSpan,
+    Duration? maxSpan,
+    String? minDatetime,
+    String? maxDatetime,
+  }) {
     if (minSpan != null && maxSpan != null && maxSpan < minSpan)
       throw 'max span must be greater than min span';
 
-    this.options['minSpan'] = minSpan ?? this.options['minSpan'];
-    this.options['maxSpan'] = maxSpan ?? this.options['maxSpan'];
+    this.options!['minSpan'] = minSpan ?? this.options!['minSpan'];
+    this.options!['maxSpan'] = maxSpan ?? this.options!['maxSpan'];
 
-    if (minDatetime != null) {
-      this.options['minDatetime'] = minDatetime ?? this.options['minDatetime'];
-    }
-    if (maxDatetime != null) {
-      this.options['maxDatetime'] = maxDatetime ?? this.options['maxDatetime'];
-    }
+    this.options!['minDatetime'] = minDatetime ?? this.options!['minDatetime'];
+
+    this.options!['maxDatetime'] = maxDatetime ?? this.options!['maxDatetime'];
   }
 
   @override
@@ -389,7 +391,7 @@ _parseDatetimeInput(datetime, format, separator) {
     List<String> monthFormats = ['MM', 'M'];
     List<String> yearFormats = ['YYYY', 'YY'];
 
-    int day, month, year;
+    int? day, month, year;
 
     for (int i = 0; i < formatParts.length; i++) {
       if (dayFormats.contains(formatParts[i])) {
@@ -422,84 +424,84 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
   final Jalaali startDate =
       Jalaali.fromDateTime(DateTime(1925, 3, 21)); // 1304/1/1
   final List<Map<String, dynamic>> pages = [];
-  final List<int> months = [];
-  final List<int> years = [];
+  final List<int?> months = [];
+  final List<int?> years = [];
 
-  Jalaali inputSelectedDate;
-  Jalaali rangeStartDate;
-  Jalaali rangeFinishDate;
+  Jalaali? inputSelectedDate;
+  Jalaali? rangeStartDate;
+  Jalaali? rangeFinishDate;
 
-  double datePickerHeight;
+  double? datePickerHeight;
 
-  int selectedPageIndex;
-  int todayPageIndex;
+  late int selectedPageIndex;
+  late int todayPageIndex;
 
-  int datePickerCurrentMonth = 1;
-  int datePickerCurrentYear = 1;
+  int? datePickerCurrentMonth = 1;
+  int? datePickerCurrentYear = 1;
 
-  bool inputSelectedDateByUser;
+  bool? inputSelectedDateByUser;
 
-  ScrollController displayYearsController;
-  ScrollController displayMonthsController;
-  PageController datePickerController;
+  ScrollController? displayYearsController;
+  ScrollController? displayMonthsController;
+  PageController? datePickerController;
 
-  AnimationController yearAnimationController;
-  AnimationController monthAnimationController;
+  late AnimationController yearAnimationController;
+  late AnimationController monthAnimationController;
 
-  String controllerTextTmp;
-  String oldText;
+  String? controllerTextTmp;
+  String? oldText;
 
   bool yearMonthVisibility = false;
 
-  DateTime standardMinDatetime;
-  DateTime standardMaxDatetime;
+  DateTime? standardMinDatetime;
+  DateTime? standardMaxDatetime;
 
   inputStringToJalaali() {
-    controllerTextTmp = englishNumbers(widget.options['controller'].text);
+    controllerTextTmp = englishNumbers(widget.options!['controller'].text);
 
     inputSelectedDate = Jalaali.now();
     inputSelectedDateByUser = false;
 
-    Jalaali jalaaliMinDatetime, jalaaliMaxDatetime;
-    if (widget.options['minDatetime'] != null) {
-      jalaaliMinDatetime = _parseDatetimeInput(widget.options['minDatetime'],
-          widget.options['defaultInputFormat'], "/");
-      standardMinDatetime = jalaaliMinDatetime.toDateTime();
+    Jalaali? jalaaliMinDatetime, jalaaliMaxDatetime;
+    if (widget.options!['minDatetime'] != null) {
+      jalaaliMinDatetime = _parseDatetimeInput(widget.options!['minDatetime'],
+          widget.options!['defaultInputFormat'], "/");
+      standardMinDatetime = jalaaliMinDatetime!.toDateTime();
     }
-    if (widget.options['maxDatetime'] != null) {
-      jalaaliMaxDatetime = _parseDatetimeInput(widget.options['maxDatetime'],
-          widget.options['defaultInputFormat'], "/");
-      standardMaxDatetime = jalaaliMaxDatetime.toDateTime();
+    if (widget.options!['maxDatetime'] != null) {
+      jalaaliMaxDatetime = _parseDatetimeInput(widget.options!['maxDatetime'],
+          widget.options!['defaultInputFormat'], "/");
+      standardMaxDatetime = jalaaliMaxDatetime!.toDateTime();
     }
 
     if (controllerTextTmp != null && controllerTextTmp.toString().isNotEmpty) {
       inputSelectedDateByUser = true;
 
-      if (widget.options['rangeDatePicker'] == true) {
+      if (widget.options!['rangeDatePicker'] == true) {
         List<String> datesList =
-            controllerTextTmp.split(widget.options['rangeSeparator']);
+            controllerTextTmp!.split(widget.options!['rangeSeparator']);
         if (datesList.length == 2) {
           rangeStartDate = inputSelectedDate = _parseDatetimeInput(datesList[0],
-              widget.options['outputFormat'], widget.options['separator']);
+              widget.options!['outputFormat'], widget.options!['separator']);
           rangeFinishDate = _parseDatetimeInput(datesList[1],
-              widget.options['outputFormat'], widget.options['separator']);
+              widget.options!['outputFormat'], widget.options!['separator']);
 
-          DateTime standardStartDatetime = rangeStartDate.toDateTime();
-          DateTime standardFinishDatetime = rangeFinishDate.toDateTime();
+          DateTime standardStartDatetime = rangeStartDate!.toDateTime();
+          DateTime standardFinishDatetime = rangeFinishDate!.toDateTime();
 
           if (standardMinDatetime != null) {
-            if (standardStartDatetime.isBefore(standardMinDatetime)) {
+            if (standardStartDatetime.isBefore(standardMinDatetime!)) {
               rangeStartDate = jalaaliMinDatetime;
             }
-            if (standardFinishDatetime.isBefore(standardMinDatetime)) {
+            if (standardFinishDatetime.isBefore(standardMinDatetime!)) {
               rangeFinishDate = jalaaliMinDatetime;
             }
           }
           if (standardMaxDatetime != null) {
-            if (standardStartDatetime.isAfter(standardMaxDatetime)) {
+            if (standardStartDatetime.isAfter(standardMaxDatetime!)) {
               rangeStartDate = jalaaliMaxDatetime;
             }
-            if (standardFinishDatetime.isAfter(standardMaxDatetime)) {
+            if (standardFinishDatetime.isAfter(standardMaxDatetime!)) {
               rangeFinishDate = jalaaliMaxDatetime;
             }
           }
@@ -510,17 +512,17 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
         }
       } else {
         inputSelectedDate = _parseDatetimeInput(controllerTextTmp,
-            widget.options['outputFormat'], widget.options['separator']);
+            widget.options!['outputFormat'], widget.options!['separator']);
 
-        DateTime standardStartDatetime = inputSelectedDate.toDateTime();
+        DateTime standardStartDatetime = inputSelectedDate!.toDateTime();
 
         if (standardMinDatetime != null) {
-          if (standardStartDatetime.isBefore(standardMinDatetime)) {
+          if (standardStartDatetime.isBefore(standardMinDatetime!)) {
             inputSelectedDate = jalaaliMinDatetime;
           }
         }
         if (standardMaxDatetime != null) {
-          if (standardStartDatetime.isAfter(standardMaxDatetime)) {
+          if (standardStartDatetime.isAfter(standardMaxDatetime!)) {
             inputSelectedDate = jalaaliMaxDatetime;
           }
         }
@@ -530,14 +532,14 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
 
   @override
   void initState() {
-    datePickerHeight = widget.options['datePickerHeight'];
+    datePickerHeight = widget.options!['datePickerHeight'];
 
     // change TextField input to a jalaali data-type, if there is no input, then current date is used
     inputStringToJalaali();
 
 // set current month and year of the datepicker to selected input string
-    datePickerCurrentMonth = inputSelectedDate.month;
-    datePickerCurrentYear = inputSelectedDate.year;
+    datePickerCurrentMonth = inputSelectedDate!.month;
+    datePickerCurrentYear = inputSelectedDate!.year;
 
     // using this index to determine the position of first day of month in week. for example ( may be 1st day of next month is monday )
     int firstDayOfMonthIndex = 0;
@@ -550,17 +552,24 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
     int previousMonthDays = 0;
 
     // loop through years and months and add them inside pages ==>  List<Map<String, dynamic>>
-    for (int year = startDate.year; year <= (currentDate.year + 100); year++) {
+    // for (int year = startDate.year!;
+    //     year <= (currentDate.year! + 100);
+    //     year++) {
+    //   // adding year to years list to have length of years
+    //   years.add(year);
+
+    for (int year = startDate.year!;
+        year <= (currentDate.year! + 100);
+        year++) {
       // adding year to years list to have length of years
       years.add(year);
-
       for (int month = 1; month <= 12; month++) {
         // adding month to months list to have length of months
         months.add(month);
 
         // check if year and month of loops is equal to user input date. if yes, we store this page index as selected page index
-        if (year == inputSelectedDate.year && month == inputSelectedDate.month)
-          selectedPageIndex = pageIndex;
+        if (year == inputSelectedDate!.year &&
+            month == inputSelectedDate!.month) selectedPageIndex = pageIndex;
 
         // check if year and month of loops is equal to current datetime. if yes, we store this page index as today page index
         if (year == currentDate.year && month == currentDate.month)
@@ -601,12 +610,12 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
     // year animation controller
     yearAnimationController = AnimationController(
         vsync: this,
-        duration: widget.options['yearSelectionAnimationDuration']);
+        duration: widget.options!['yearSelectionAnimationDuration']);
 
     // month animation controller
     monthAnimationController = AnimationController(
         vsync: this,
-        duration: widget.options['monthSelectionAnimationDuration']);
+        duration: widget.options!['monthSelectionAnimationDuration']);
 
     super.initState();
   }
@@ -696,7 +705,8 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                                     day: firstRowDays, pageInfo: pageInfo));
                               }
 
-                              previousRowDayNumber = (7 - pageInfo['FDIW']);
+                              previousRowDayNumber =
+                                  7 - pageInfo['FDIW'] as int;
 
 // if this row is the last row
                             } else if (row == (viewPortDays / 7)) {
@@ -733,7 +743,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                             }
 
                             double rowMargin = 0;
-                            if (widget.options['dayBlockRadius'] != null)
+                            if (widget.options!['dayBlockRadius'] != null)
                               rowMargin = 1;
 
                             datePicker.add(Expanded(
@@ -771,18 +781,18 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
   }
 
   // this function displays each day as a block or cell
-  Widget _dayBlock({int day, bool otherMonthDay = false, pageInfo}) {
-    Color color = widget.options['daysBackgroundColor'];
-    TextStyle dayTextStyle = widget.options['daysTextStyle'];
+  Widget _dayBlock({int? day, bool otherMonthDay = false, pageInfo}) {
+    Color? color = widget.options!['daysBackgroundColor'];
+    TextStyle? dayTextStyle = widget.options!['daysTextStyle'];
     Jalaali dayBlockDateTime =
         Jalaali(datePickerCurrentYear, datePickerCurrentMonth, day);
     Border dayBorder = Border.all(
-        color: widget.options['daysBorderColor'],
-        width: widget.options['daysBorderWidth']);
+        color: widget.options!['daysBorderColor'],
+        width: widget.options!['daysBorderWidth']);
 
-    BorderRadius borderRadius;
-    if (widget.options['dayBlockRadius'] != null) {
-      borderRadius = BorderRadius.circular(widget.options['dayBlockRadius']);
+    BorderRadius? borderRadius;
+    if (widget.options!['dayBlockRadius'] != null) {
+      borderRadius = BorderRadius.circular(widget.options!['dayBlockRadius']);
     }
 
     DateTime standardDayBlockDatetime = dayBlockDateTime.toDateTime();
@@ -790,149 +800,150 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
     // if datepicker type is range and starting day is selected, then all previous days should be disabled
     bool disabledDay = false;
     if (rangeStartDate != null && rangeFinishDate == null) {
-      DateTime standardRangeStartDatetime = rangeStartDate.toDateTime();
+      DateTime standardRangeStartDatetime = rangeStartDate!.toDateTime();
       if (standardDayBlockDatetime.isBefore(standardRangeStartDatetime)) {
         disabledDay = true;
       }
 
-      if (!disabledDay && widget.options['maxSpan'] != null) {
+      if (!disabledDay && widget.options!['maxSpan'] != null) {
         int differenceOfRangeStartDatetimeAndDayBlock = standardDayBlockDatetime
             .difference(standardRangeStartDatetime)
             .inDays;
         if (differenceOfRangeStartDatetimeAndDayBlock >
-            widget.options['maxSpan'].inDays) disabledDay = true;
+            widget.options!['maxSpan'].inDays) disabledDay = true;
       }
-      if (!disabledDay && widget.options['minSpan'] != null) {
+      if (!disabledDay && widget.options!['minSpan'] != null) {
         int differenceOfRangeStartDatetimeAndDayBlock = standardDayBlockDatetime
             .difference(standardRangeStartDatetime)
             .inDays;
         if (differenceOfRangeStartDatetimeAndDayBlock <=
-            widget.options['minSpan'].inDays) disabledDay = true;
+            widget.options!['minSpan'].inDays) disabledDay = true;
       }
 
-      if (day == rangeStartDate.day &&
-          datePickerCurrentMonth == rangeStartDate.month &&
-          datePickerCurrentYear == rangeStartDate.year &&
+      if (day == rangeStartDate!.day &&
+          datePickerCurrentMonth == rangeStartDate!.month &&
+          datePickerCurrentYear == rangeStartDate!.year &&
           otherMonthDay == false) {
         BorderSide bs = BorderSide(
-            color: widget.options['selectedDayBorderColor'],
-            width: widget.options['daysBorderWidth']);
+            color: widget.options!['selectedDayBorderColor'],
+            width: widget.options!['daysBorderWidth']);
 
-        if (widget.options['dayBlockRadius'] == null) {
+        if (widget.options!['dayBlockRadius'] == null) {
           dayBorder = Border(top: bs, right: bs, bottom: bs);
         } else {
           dayBorder = Border.all(
-              color: widget.options['selectedDayBorderColor'],
-              width: widget.options['daysBorderWidth']);
+              color: widget.options!['selectedDayBorderColor'],
+              width: widget.options!['daysBorderWidth']);
         }
 
-        color = widget.options['selectedDayBackgroundColor'];
+        color = widget.options!['selectedDayBackgroundColor'];
       }
     }
 
     if (!disabledDay) {
       if (((standardMinDatetime) != null &&
-              standardDayBlockDatetime.isBefore(standardMinDatetime)) ||
+              standardDayBlockDatetime.isBefore(standardMinDatetime!)) ||
           ((standardMaxDatetime) != null &&
-              standardDayBlockDatetime.isAfter(standardMaxDatetime))) {
+              standardDayBlockDatetime.isAfter(standardMaxDatetime!))) {
         disabledDay = true;
       }
     }
 
     // if current day is not a day of current month ( it belongs to previous or next month ) then it should be disabled
     if (otherMonthDay == true || disabledDay == true) {
-      color = widget.options['disabledDayBackgroundColor'];
-      dayTextStyle = widget.options['disabledDayTextStyle'];
+      color = widget.options!['disabledDayBackgroundColor'];
+      dayTextStyle = widget.options!['disabledDayTextStyle'];
     } else {
       // if current day is belongs to current month and equals to current date , then change color and font to current date
       if (currentDate.day == day &&
           currentDate.month == datePickerCurrentMonth &&
           currentDate.year == datePickerCurrentYear) {
-        color = widget.options['currentDayBackgroundColor'];
-        dayTextStyle = widget.options['currentDayTextStyle'];
+        color = widget.options!['currentDayBackgroundColor'];
+        dayTextStyle = widget.options!['currentDayTextStyle'];
         dayBorder = Border.all(
-            color: widget.options['currentDayBorderColor'],
-            width: widget.options['daysBorderWidth']);
+            color: widget.options!['currentDayBorderColor'],
+            width: widget.options!['daysBorderWidth']);
       }
 
       // if current day is belongs to current month and equals to selected date , then change color and font to selected date
-      if (day == inputSelectedDate.day &&
-          datePickerCurrentMonth == inputSelectedDate.month &&
-          datePickerCurrentYear == inputSelectedDate.year &&
+      if (day == inputSelectedDate!.day &&
+          datePickerCurrentMonth == inputSelectedDate!.month &&
+          datePickerCurrentYear == inputSelectedDate!.year &&
           inputSelectedDateByUser == true) {
-        color = widget.options['selectedDayBackgroundColor'];
-        dayTextStyle = widget.options['selectedDayTextStyle'];
+        color = widget.options!['selectedDayBackgroundColor'];
+        dayTextStyle = widget.options!['selectedDayTextStyle'];
 
         dayBorder = Border.all(
-            color: widget.options['selectedDayBorderColor'],
-            width: widget.options['daysBorderWidth']);
+            color: widget.options!['selectedDayBorderColor'],
+            width: widget.options!['daysBorderWidth']);
       }
 
       // if current day is belongs to current month and is inside the selected range , then change color and font to selected date
       if ((rangeStartDate != null && rangeFinishDate != null)) {
         DateTime dayBlockGregorianDateTime = standardDayBlockDatetime;
 
-        if (dayBlockGregorianDateTime.compareTo(rangeStartDate.toDateTime()) >=
+        if (dayBlockGregorianDateTime.compareTo(rangeStartDate!.toDateTime()) >=
                 0 &&
-            dayBlockGregorianDateTime.compareTo(rangeFinishDate.toDateTime()) <=
+            dayBlockGregorianDateTime
+                    .compareTo(rangeFinishDate!.toDateTime()) <=
                 0) {
-          color = widget.options['selectedDayBackgroundColor'];
-          dayTextStyle = widget.options['selectedDayTextStyle'];
-          if (widget.options['dayBlockRadius'] == null) {
+          color = widget.options!['selectedDayBackgroundColor'];
+          dayTextStyle = widget.options!['selectedDayTextStyle'];
+          if (widget.options!['dayBlockRadius'] == null) {
             DateTime neighbourDay;
             BorderSide borderTop = BorderSide(
-                color: widget.options['selectedDaysInnerBorderColor'],
-                width: widget.options['daysBorderWidth']);
+                color: widget.options!['selectedDaysInnerBorderColor'],
+                width: widget.options!['daysBorderWidth']);
             BorderSide borderRight = BorderSide(
-                color: widget.options['selectedDaysInnerBorderColor'],
-                width: widget.options['daysBorderWidth']);
+                color: widget.options!['selectedDaysInnerBorderColor'],
+                width: widget.options!['daysBorderWidth']);
             BorderSide borderLeft = BorderSide(
-                color: widget.options['selectedDaysInnerBorderColor'],
-                width: widget.options['daysBorderWidth']);
+                color: widget.options!['selectedDaysInnerBorderColor'],
+                width: widget.options!['daysBorderWidth']);
             BorderSide borderBottom = BorderSide(
-                color: widget.options['selectedDaysInnerBorderColor'],
-                width: widget.options['daysBorderWidth']);
+                color: widget.options!['selectedDaysInnerBorderColor'],
+                width: widget.options!['daysBorderWidth']);
 //          BorderSide borderTop = BorderSide(color: widget.options['daysBorderColor'], width: widget.options['daysBorderWidth']);
 //          BorderSide borderTop = BorderSide(color: widget.options['daysBorderColor'], width: widget.options['daysBorderWidth']);
 
             /*Border Top*/
             neighbourDay =
                 dayBlockGregorianDateTime.subtract(Duration(days: 7));
-            if (neighbourDay.compareTo(rangeStartDate.toDateTime()) < 0 ||
-                neighbourDay.compareTo(rangeFinishDate.toDateTime()) > 0) {
+            if (neighbourDay.compareTo(rangeStartDate!.toDateTime()) < 0 ||
+                neighbourDay.compareTo(rangeFinishDate!.toDateTime()) > 0) {
               borderTop = BorderSide(
-                  color: widget.options['selectedDayBorderColor'],
-                  width: widget.options['daysBorderWidth']);
+                  color: widget.options!['selectedDayBorderColor'],
+                  width: widget.options!['daysBorderWidth']);
             }
 
             /*Border Right*/
             neighbourDay =
                 dayBlockGregorianDateTime.subtract(Duration(days: 1));
-            if (neighbourDay.compareTo(rangeStartDate.toDateTime()) < 0 ||
-                neighbourDay.compareTo(rangeFinishDate.toDateTime()) > 0) {
+            if (neighbourDay.compareTo(rangeStartDate!.toDateTime()) < 0 ||
+                neighbourDay.compareTo(rangeFinishDate!.toDateTime()) > 0) {
               borderRight = BorderSide(
-                  color: widget.options['selectedDayBorderColor'],
-                  width: widget.options['daysBorderWidth']);
-              color = widget.options['rangeFirstDaySelectedBackgroundColor'];
+                  color: widget.options!['selectedDayBorderColor'],
+                  width: widget.options!['daysBorderWidth']);
+              color = widget.options!['rangeFirstDaySelectedBackgroundColor'];
             }
 
             /*Border Left*/
             neighbourDay = dayBlockGregorianDateTime.add(Duration(days: 1));
-            if (neighbourDay.compareTo(rangeStartDate.toDateTime()) < 0 ||
-                neighbourDay.compareTo(rangeFinishDate.toDateTime()) > 0) {
+            if (neighbourDay.compareTo(rangeStartDate!.toDateTime()) < 0 ||
+                neighbourDay.compareTo(rangeFinishDate!.toDateTime()) > 0) {
               borderLeft = BorderSide(
-                  color: widget.options['selectedDayBorderColor'],
-                  width: widget.options['daysBorderWidth']);
-              color = widget.options['rangeLastDaySelectedBackgroundColor'];
+                  color: widget.options!['selectedDayBorderColor'],
+                  width: widget.options!['daysBorderWidth']);
+              color = widget.options!['rangeLastDaySelectedBackgroundColor'];
             }
 
             /*Border Bottom*/
             neighbourDay = dayBlockGregorianDateTime.add(Duration(days: 7));
-            if (neighbourDay.compareTo(rangeStartDate.toDateTime()) < 0 ||
-                neighbourDay.compareTo(rangeFinishDate.toDateTime()) > 0) {
+            if (neighbourDay.compareTo(rangeStartDate!.toDateTime()) < 0 ||
+                neighbourDay.compareTo(rangeFinishDate!.toDateTime()) > 0) {
               borderBottom = BorderSide(
-                  color: widget.options['selectedDayBorderColor'],
-                  width: widget.options['daysBorderWidth']);
+                  color: widget.options!['selectedDayBorderColor'],
+                  width: widget.options!['daysBorderWidth']);
             }
 
             dayBorder = Border(
@@ -948,20 +959,20 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
             neighbourDay =
                 dayBlockGregorianDateTime.subtract(Duration(days: 1));
 
-            if (neighbourDay.compareTo(rangeStartDate.toDateTime()) < 0) {
+            if (neighbourDay.compareTo(rangeStartDate!.toDateTime()) < 0) {
               borderRadius = BorderRadius.only(
-                  topRight: Radius.circular(widget.options['dayBlockRadius']),
+                  topRight: Radius.circular(widget.options!['dayBlockRadius']),
                   bottomRight:
-                      Radius.circular(widget.options['dayBlockRadius']));
+                      Radius.circular(widget.options!['dayBlockRadius']));
               rightCornersRounded = true;
             }
 
             neighbourDay = dayBlockGregorianDateTime.add(Duration(days: 1));
-            if (neighbourDay.compareTo(rangeFinishDate.toDateTime()) > 0) {
+            if (neighbourDay.compareTo(rangeFinishDate!.toDateTime()) > 0) {
               borderRadius = BorderRadius.only(
-                  topLeft: Radius.circular(widget.options['dayBlockRadius']),
+                  topLeft: Radius.circular(widget.options!['dayBlockRadius']),
                   bottomLeft:
-                      Radius.circular(widget.options['dayBlockRadius']));
+                      Radius.circular(widget.options!['dayBlockRadius']));
               leftCornersRounded = true;
             }
 
@@ -970,27 +981,28 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
             }
 
             dayBorder = Border.all(
-                color: widget.options['selectedDayBorderColor'],
-                width: widget.options['daysBorderWidth']);
+                color: widget.options!['selectedDayBorderColor'],
+                width: widget.options!['daysBorderWidth']);
           }
         }
       }
     }
 
     Widget gregorianDay = Container();
-    if (widget.options['showGregorianDays'] == true && otherMonthDay == false) {
+    if (widget.options!['showGregorianDays'] == true &&
+        otherMonthDay == false) {
       gregorianDay = Container(
         padding: EdgeInsets.all(1),
         child: Text(
           dayBlockDateTime.toDateTime().day.toString(),
-          style: widget.options['gregorianDaysTextStyle'],
+          style: widget.options!['gregorianDaysTextStyle'],
         ),
       );
     }
     Positioned gregorianDaysPositioned = Positioned(child: gregorianDay);
 
-    if (widget.options['dayBlockRadius'] == null) {
-      switch (widget.options['gregorianDaysLocation']) {
+    if (widget.options!['dayBlockRadius'] == null) {
+      switch (widget.options!['gregorianDaysLocation']) {
         case GregorianDaysLocation.topLeft:
           gregorianDaysPositioned =
               Positioned(left: 2, top: 2, child: gregorianDay);
@@ -1025,32 +1037,32 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                 yearMonthVisibility = false;
               });
 
-              if (widget.options['rangeDatePicker'] == true) {
+              if (widget.options!['rangeDatePicker'] == true) {
                 // if start date is selected, then waiting for finish date selection and clearing input to display new selection
                 if (rangeStartDate == null ||
                     (rangeStartDate != null && rangeFinishDate != null)) {
                   rangeStartDate = Jalaali(pageInfo['Y'], pageInfo['M'], day);
                   rangeFinishDate = null;
 
-                  oldText = widget.options['controller'].text;
+                  oldText = widget.options!['controller'].text;
 
-                  widget.options['controller'].text = '';
+                  widget.options!['controller'].text = '';
                 } else {
                   rangeFinishDate = Jalaali(pageInfo['Y'], pageInfo['M'], day);
 
-                  if (rangeStartDate
+                  if (rangeStartDate!
                           .toDateTime()
-                          .compareTo(rangeFinishDate.toDateTime()) <=
+                          .compareTo(rangeFinishDate!.toDateTime()) <=
                       0) {
-                    widget.options['controller'].text = translate(
-                            widget.options['outputFormat'],
-                            rangeStartDate,
-                            widget.options['farsiDigits']) +
-                        widget.options['rangeSeparator'] +
-                        translate(widget.options['outputFormat'],
-                            rangeFinishDate, widget.options['farsiDigits']);
+                    widget.options!['controller'].text = translate(
+                            widget.options!['outputFormat'],
+                            rangeStartDate!,
+                            widget.options!['farsiDigits']) +
+                        widget.options!['rangeSeparator'] +
+                        translate(widget.options!['outputFormat'],
+                            rangeFinishDate!, widget.options!['farsiDigits']);
                   } else {
-                    widget.options['controller'].text = '';
+                    widget.options!['controller'].text = '';
                   }
 
                   // after selecting both start and finish,
@@ -1060,25 +1072,25 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                   rangeFinishDate = null;
                 }
               } else {
-                oldText = widget.options['controller'].text;
+                oldText = widget.options!['controller'].text;
 
                 Jalaali jd = Jalaali(pageInfo['Y'], pageInfo['M'], day);
-                widget.options['controller'].text = translate(
-                    widget.options['outputFormat'],
+                widget.options!['controller'].text = translate(
+                    widget.options!['outputFormat'],
                     jd,
-                    widget.options['farsiDigits']);
+                    widget.options!['farsiDigits']);
               }
 
               // after updating input by selected date, we convert the selected date to jalaali date
               inputStringToJalaali();
 
-              if (widget.options['rangeDatePicker'] == false ||
-                  (widget.options['rangeDatePicker'] == true &&
+              if (widget.options!['rangeDatePicker'] == false ||
+                  (widget.options!['rangeDatePicker'] == true &&
                           rangeStartDate != null &&
                           rangeFinishDate != null) &&
-                      widget.options['onChange'] != null) {
-                widget.options['onChange'](
-                    oldText, widget.options['controller'].text);
+                      widget.options!['onChange'] != null) {
+                widget.options!['onChange'](
+                    oldText, widget.options!['controller'].text);
               }
 
               setState(() {});
@@ -1091,7 +1103,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                   color: color, border: dayBorder, borderRadius: borderRadius),
               child: Center(
                 child: Text(
-                  widget.options['farsiDigits'] == true
+                  widget.options!['farsiDigits'] == true
                       ? farsiNumbers(day.toString())
                       : day.toString(),
                   style: dayTextStyle,
@@ -1109,7 +1121,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
     Jalaali datetime = Jalaali(pageInfo['Y'], pageInfo['M'], 1);
 
     return Container(
-        color: widget.options['headerBackgroundColor'],
+        color: widget.options!['headerBackgroundColor'],
         height: 50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1141,15 +1153,15 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                           Container(
                             child: Icon(
                               Icons.expand_more,
-                              size: widget.options['headerTextStyle'].fontSize,
-                              color: widget.options['headerTextStyle'].color,
+                              size: widget.options!['headerTextStyle'].fontSize,
+                              color: widget.options!['headerTextStyle'].color,
                             ),
                           ),
                           SizedBox(width: 4),
                           Container(
                             child: Text(
                               translate('MMM', datetime, false),
-                              style: widget.options['headerTextStyle'],
+                              style: widget.options!['headerTextStyle'],
                             ),
                           ),
                         ],
@@ -1178,10 +1190,10 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                           children: <Widget>[
                             Container(
                               child: Text(
-                                  widget.options['farsiDigits'] == true
+                                  widget.options!['farsiDigits'] == true
                                       ? farsiNumbers(datetime.year.toString())
                                       : datetime.year.toString(),
-                                  style: widget.options['headerTextStyle']),
+                                  style: widget.options!['headerTextStyle']),
                             ),
                             SizedBox(width: 8),
                             Container(
@@ -1189,8 +1201,8 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                               child: Icon(
                                 Icons.expand_more,
                                 size:
-                                    widget.options['headerTextStyle'].fontSize,
-                                color: widget.options['headerTextStyle'].color,
+                                    widget.options!['headerTextStyle'].fontSize,
+                                color: widget.options!['headerTextStyle'].color,
                               ),
                             ),
                           ],
@@ -1203,8 +1215,8 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
               flex: 1,
               child: InkWell(
                 onTap: () {
-                  datePickerController.animateToPage(todayPageIndex,
-                      duration: widget.options['changePageDuration'],
+                  datePickerController!.animateToPage(todayPageIndex,
+                      duration: widget.options!['changePageDuration'],
                       curve: Curves.easeIn);
                 },
                 child: Container(
@@ -1212,17 +1224,17 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      widget.options['headerTodayIcon'],
+                      widget.options!['headerTodayIcon'],
                       SizedBox(
                         width: 5,
                       ),
                       Container(
                           padding: EdgeInsets.only(top: 3),
-                          child: Text(widget.options['headerTodayCaption'],
-                              style: widget.options['headerTodayTextStyle']))
+                          child: Text(widget.options!['headerTodayCaption'],
+                              style: widget.options!['headerTodayTextStyle']))
                     ],
                   ),
-                  color: widget.options['headerTodayBackgroundColor'],
+                  color: widget.options!['headerTodayBackgroundColor'],
                 ),
               ),
             )
@@ -1235,13 +1247,13 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
       margin: EdgeInsets.only(bottom: 2),
       child: Row(
         children: <Widget>[
-          _weekDayCaption(widget.options['weekCaptions'][0]),
-          _weekDayCaption(widget.options['weekCaptions'][1]),
-          _weekDayCaption(widget.options['weekCaptions'][2]),
-          _weekDayCaption(widget.options['weekCaptions'][3]),
-          _weekDayCaption(widget.options['weekCaptions'][4]),
-          _weekDayCaption(widget.options['weekCaptions'][5]),
-          _weekDayCaption(widget.options['weekCaptions'][6]),
+          _weekDayCaption(widget.options!['weekCaptions'][0]),
+          _weekDayCaption(widget.options!['weekCaptions'][1]),
+          _weekDayCaption(widget.options!['weekCaptions'][2]),
+          _weekDayCaption(widget.options!['weekCaptions'][3]),
+          _weekDayCaption(widget.options!['weekCaptions'][4]),
+          _weekDayCaption(widget.options!['weekCaptions'][5]),
+          _weekDayCaption(widget.options!['weekCaptions'][6]),
         ],
       ),
     );
@@ -1251,11 +1263,11 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
     return Expanded(
       child: Container(
           padding: EdgeInsets.all(6),
-          color: widget.options['weekCaptionsBackgroundColor'],
+          color: widget.options!['weekCaptionsBackgroundColor'],
           child: Center(
               child: Text(
             title,
-            style: widget.options['weekCaptionsTextStyle'],
+            style: widget.options!['weekCaptionsTextStyle'],
           ))),
     );
   }
@@ -1273,12 +1285,11 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
         itemCount: years.length,
         itemBuilder: (BuildContext context, int index) {
           Jalaali datetime = Jalaali(years[index], datePickerCurrentMonth, 1);
-
-          Color bgColor = widget.options['yearSelectionBackgroundColor'];
-          TextStyle textStyle = widget.options['yearSelectionTextStyle'];
+          Color? bgColor = widget.options!['yearSelectionBackgroundColor'];
+          TextStyle? textStyle = widget.options!['yearSelectionTextStyle'];
           if (years[index] == datePickerCurrentYear) {
-            bgColor = widget.options['yearSelectionHighlightBackgroundColor'];
-            textStyle = widget.options['yearSelectionHighlightTextStyle'];
+            bgColor = widget.options!['yearSelectionHighlightBackgroundColor'];
+            textStyle = widget.options!['yearSelectionHighlightTextStyle'];
           }
 
           return GestureDetector(
@@ -1287,11 +1298,11 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
               yearMonthVisibility = false;
 
               setState(() {});
-              datePickerController.animateToPage(
-                  (datePickerCurrentYear - startDate.year) * 12 +
-                      datePickerCurrentMonth -
+              datePickerController!.animateToPage(
+                  (datePickerCurrentYear! - startDate.year!) * 12 +
+                      datePickerCurrentMonth! -
                       1,
-                  duration: widget.options['changePageDuration'],
+                  duration: widget.options!['changePageDuration'],
                   curve: Curves.easeOut);
               yearAnimationController.reset();
             },
@@ -1310,7 +1321,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                       left: 0,
                       child: Center(
                           child: Text(
-                        widget.options['farsiDigits'] == true
+                        widget.options!['farsiDigits'] == true
                             ? farsiNumbers(years[index].toString())
                             : years[index].toString(),
                         style: textStyle,
@@ -1344,13 +1355,13 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
         controller: displayMonthsController,
         itemCount: 12,
         itemBuilder: (BuildContext context, int index) {
-          Jalaali datetime = Jalaali(inputSelectedDate.year, index + 1, 1);
+          Jalaali datetime = Jalaali(inputSelectedDate!.year, index + 1, 1);
 
-          Color bgColor = widget.options['monthSelectionBackgroundColor'];
-          TextStyle textStyle = widget.options['monthSelectionTextStyle'];
+          Color? bgColor = widget.options!['monthSelectionBackgroundColor'];
+          TextStyle? textStyle = widget.options!['monthSelectionTextStyle'];
           if (index + 1 == datePickerCurrentMonth) {
-            bgColor = widget.options['monthSelectionHighlightBackgroundColor'];
-            textStyle = widget.options['monthSelectionHighlightTextStyle'];
+            bgColor = widget.options!['monthSelectionHighlightBackgroundColor'];
+            textStyle = widget.options!['monthSelectionHighlightTextStyle'];
           }
 
           return GestureDetector(
@@ -1358,9 +1369,9 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
               datePickerCurrentMonth = index + 1;
               yearMonthVisibility = false;
               setState(() {});
-              datePickerController.animateToPage(
-                  (datePickerCurrentYear - startDate.year) * 12 + index,
-                  duration: widget.options['changePageDuration'],
+              datePickerController!.animateToPage(
+                  (datePickerCurrentYear! - startDate.year!) * 12 + index,
+                  duration: widget.options!['changePageDuration'],
                   curve: Curves.easeOut);
               monthAnimationController.reset();
             },
@@ -1418,13 +1429,13 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                   child: Column(
                     children: <Widget>[
                       Container(
-                        height: widget.options['datePickerHeight'] / 2.8,
+                        height: widget.options!['datePickerHeight'] / 2.8,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              widget.options['selectionGradientColor'],
+                              widget.options!['selectionGradientColor'],
                               Colors.transparent,
                             ],
                             stops: [0, 1],
@@ -1450,7 +1461,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
                             colors: [
-                              widget.options['selectionGradientColor'],
+                              widget.options!['selectionGradientColor'],
                               Colors.transparent,
                             ],
                             stops: [0.0, 1.0],
@@ -1458,7 +1469,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
 //                                    border: Border(top: BorderSide(color: Colors.black12, width: 2)),
                           color: Colors.blue,
                         ),
-                        height: widget.options['datePickerHeight'] / 2.8,
+                        height: widget.options!['datePickerHeight'] / 2.8,
                       )
                     ],
                   ),
@@ -1468,7 +1479,7 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                 scale: CurvedAnimation(
                     parent: yearAnimationController,
                     curve: Interval(0.0, 1.0,
-                        curve: widget.options['yearSelectionAnimationCurve'])),
+                        curve: widget.options!['yearSelectionAnimationCurve'])),
                 child: Center(
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 25),
@@ -1489,7 +1500,8 @@ class _PersianDatePickerWidgetState extends State<PersianDatePickerWidget>
                 scale: CurvedAnimation(
                     parent: monthAnimationController,
                     curve: Interval(0.0, 1.0,
-                        curve: widget.options['monthSelectionAnimationCurve'])),
+                        curve:
+                            widget.options!['monthSelectionAnimationCurve'])),
                 child: Center(
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 25),
